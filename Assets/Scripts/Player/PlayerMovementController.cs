@@ -6,6 +6,8 @@ public class PlayerMovementController : MonoBehaviour
 {
     public float movementSpeed = 5f;
     public Rigidbody2D rigidBody;
+    public Animator feetAnimator;
+
 
     private Vector2 movement;
     // Start is called before the first frame update
@@ -17,13 +19,34 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxis("Horizontal");
-        movement.y = Input.GetAxis("Vertical");
+        if (CameraController.tabPress == false)
+        {
+            movement.x = Input.GetAxis("Horizontal");
+            movement.y = Input.GetAxis("Vertical");
+
+            feetAnimator.SetFloat("Horizontal", movement.x);
+            feetAnimator.SetFloat("Vertical", movement.y);
+            feetAnimator.SetFloat("Speed", movement.sqrMagnitude);
+        }
+        else
+        {
+            movement.x = 0;
+            movement.y = 0;
+
+            feetAnimator.SetFloat("Horizontal", movement.x);
+            feetAnimator.SetFloat("Vertical", movement.y);
+            feetAnimator.SetFloat("Speed", movement.sqrMagnitude);
+        }
     }
 
     private void FixedUpdate()
     {
+        if (CameraController.tabPress == false)
+        {
         rigidBody.MovePosition(rigidBody.position + movement * movementSpeed * Time.fixedDeltaTime);
+
+        }
     }
+
 
 }

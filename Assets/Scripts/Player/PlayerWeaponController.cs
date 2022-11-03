@@ -102,16 +102,17 @@ public class PlayerWeaponController : MonoBehaviour
 
         }*/
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading)
         {
             isReloading = true;
-           
+            StartCoroutine(Reload());
+
         }
 
-        if (isReloading && currWeaponCountAmmo > 0)
-        {
-            StartCoroutine(Reload());
-        }
+        //if (isReloading && currWeaponCountAmmo > 0)
+        //{
+        //    StartCoroutine(Reload());
+        //}
     }
 
     private void HandleInventory()
@@ -162,7 +163,7 @@ public class PlayerWeaponController : MonoBehaviour
             GameObject _bullet = Instantiate(currWeaponBullet, currWeaponBarrel.transform.position, Quaternion.identity);
         }
 
-        if (currWeaponMagazineCount <= 0 && currWeaponCountAmmo > 0)
+        if (currWeaponMagazineCount <= 0 && currWeaponCountAmmo > 0 && !isReloading)
         {
             isReloading = true;
             StartCoroutine(Reload());
@@ -173,8 +174,14 @@ public class PlayerWeaponController : MonoBehaviour
 
     IEnumerator Reload()
     {
-        timerReload += Time.deltaTime;
-        reloadUI.transform.GetChild(0).transform.localScale = new Vector3(timerReload, 1, 1);
+        while (!(timerReload > currWeaponReloadTime))
+        {
+            timerReload += Time.deltaTime;
+            reloadUI.transform.GetChild(0).transform.localScale = new Vector3(timerReload, 1, 1);
+            yield return null;
+        }
+        //timerReload += Time.deltaTime;
+        //reloadUI.transform.GetChild(0).transform.localScale = new Vector3(timerReload, 1, 1);
         if (timerReload > currWeaponReloadTime)
         {
             if (currWeaponCountAmmo > currWeapon.GetComponent<WeaponController>().magazineSize)
@@ -211,7 +218,7 @@ public class PlayerWeaponController : MonoBehaviour
             }
             magazineUI.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = currWeaponMagazineCount.ToString() + "/" + currWeaponCountAmmo.ToString();
             isReloading = false;
-            yield return null;
+            //yield return null;
         }
     }
 

@@ -25,9 +25,11 @@ public class PlayerAimWeapon : MonoBehaviour
     {
         if (CameraController.tabPress == false)
         {
-        HandleAiming();
-        HandleShooting();
-
+            if (SecretPathPlayerCollision.playerIn == false)
+            {
+                HandleShooting();
+            }
+            HandleAiming();
         }
     }
 

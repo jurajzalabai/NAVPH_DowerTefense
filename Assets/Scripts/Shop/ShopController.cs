@@ -20,12 +20,18 @@ public class ShopController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-         OpenShop();
+        if (collider.tag == "Player")
+        {
+            OpenShop();
+        }
     }
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        CloseShop();
+        if (collider.tag == "Player")
+        {
+            CloseShop();
+        }
     }
 
     public void OpenShop()

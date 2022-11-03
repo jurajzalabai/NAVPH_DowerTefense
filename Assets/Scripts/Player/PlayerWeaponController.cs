@@ -54,8 +54,14 @@ public class PlayerWeaponController : MonoBehaviour
 
         if (CameraController.tabPress == false)
         {
+            if (SecretPathPlayerCollision.playerIn == false)
+            {
+                Debug.Log("here");
+                HandleShooting();
+            }
+
             HandleAiming();
-            HandleShooting();
+
             if (!isReloading)
             {
                 HandleInventory();

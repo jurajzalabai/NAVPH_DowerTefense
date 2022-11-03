@@ -8,10 +8,15 @@ public class BulletController : MonoBehaviour
     private Rigidbody2D rb;
     public float force;
     public float bulletDamage = 34;
-
-
+    private GameObject player;
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
+    }
+    
     void Start()
     {
         //code from - https://www.youtube.com/watch?v=-bkmPm_Besk&ab_channel=MoreBBlakeyyy

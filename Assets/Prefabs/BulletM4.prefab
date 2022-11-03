@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 10
   bulletDamage: 60
+  player: {fileID: 0}
 --- !u!50 &1046643968061484405
 Rigidbody2D:
   serializedVersion: 4

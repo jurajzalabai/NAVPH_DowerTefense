@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 5159739278814272343}
   - component: {fileID: 5159739278814272336}
   - component: {fileID: 5159739278814272337}
+  - component: {fileID: 1934478196401229615}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -332,6 +333,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   bloodEffect: {fileID: 4420433148471242012, guid: 893ceef80655a1e4a83a1acbff05b020, type: 3}
+--- !u!114 &1934478196401229615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159739278814272340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92841a4d16bd6e14885d31ce99716af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
 --- !u!1 &5159739278948357034
 GameObject:
   m_ObjectHideFlags: 0

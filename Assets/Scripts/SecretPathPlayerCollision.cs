@@ -28,7 +28,7 @@ public class SecretPathPlayerCollision : MonoBehaviour
 
         for (int i = 0; i < secretPaths.Length; i++)
         {
-            if (Vector3.Distance(player.transform.position, secretPaths[i].transform.position) <= 0.75f)
+            if (Vector2.Distance(player.transform.position, secretPaths[i].transform.position) <= 0.75f)
             {
                 playerContact = true;
                 break;
@@ -36,6 +36,6 @@ public class SecretPathPlayerCollision : MonoBehaviour
         }
 
         playerIn = playerContact;
-        //Debug.Log("Player IN: " + playerIn);
+        Debug.Log("Player IN: " + playerIn);
     }
 }

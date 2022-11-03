@@ -11,9 +11,9 @@ public class EnemyController : MonoBehaviour
     private void Start()
     { 
     }
-    public void Damaged()
+    public void Damaged(float bulletDamage)
     {
-        health -= 30;
+        health -= bulletDamage;
         if (health <= 0)
         {
             GameObject blood = Instantiate(bloodEffect, this.transform.position, Quaternion.identity);

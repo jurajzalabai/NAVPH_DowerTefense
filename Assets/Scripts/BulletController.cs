@@ -8,9 +8,18 @@ public class BulletController : MonoBehaviour
     private Rigidbody2D rb;
     public float force;
     public float bulletDamage = 34;
+    private GameObject player;
+
     // Start is called before the first frame update
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
+    }
+    
     void Start()
     {
+        //code from - https://www.youtube.com/watch?v=-bkmPm_Besk&ab_channel=MoreBBlakeyyy
         rb = GetComponent<Rigidbody2D>();
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePos - transform.position;
@@ -22,7 +31,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Player")
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Untagged")
         {
             if (collision.gameObject.tag != "Enemy")
             {
@@ -31,7 +40,7 @@ public class BulletController : MonoBehaviour
             }
             else if (collision.gameObject.tag == "Enemy")
             {
-                collision.gameObject.GetComponent<EnemyController>().Damaged();
+                collision.gameObject.GetComponent<EnemyController>().Damaged(bulletDamage);
                 Destroy(this.gameObject);
             }
         }

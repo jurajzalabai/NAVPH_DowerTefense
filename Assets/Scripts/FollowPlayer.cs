@@ -6,8 +6,8 @@ namespace Pathfinding
 {
     public class FollowPlayer : MonoBehaviour
     {
-        public GameObject player;
-        public GameObject basee;
+        private GameObject player;
+        private GameObject basee;
         AIDestinationSetter aIDestination;
         private bool followingPlayer = false;
         public LayerMask collisionLayer;
@@ -15,7 +15,10 @@ namespace Pathfinding
         // Start is called before the first frame update
         void Awake()
         {
+            player = GameObject.FindGameObjectWithTag("Player");
+            basee = GameObject.FindGameObjectWithTag("Base");
             aIDestination = GetComponent<AIDestinationSetter>();
+            aIDestination.target = basee.transform;
         }
 
         // Update is called once per frame

@@ -12497,22 +12497,69 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesOnMap: {fileID: 472638597}
-  enemies:
-  - {fileID: 7883457984641218643, guid: 38f1daacf76136d4795f2cf46f174301, type: 3}
-  - {fileID: 7883457984641218643, guid: 9d4af6f8aaa9a5e42b01a11e7a85b66d, type: 3}
-  - {fileID: 7883457984641218643, guid: ebb4d86dda1ed914c940e114e8b7ef5c, type: 3}
-  - {fileID: 7883457984641218643, guid: 1988211fd7802d346a277e2a9f86cd00, type: 3}
   spawnPoints:
   - {fileID: 1800884640}
   - {fileID: 877390295}
   - {fileID: 206163996}
   - {fileID: 1808541148}
+  waves:
+  - enemies:
+    - {fileID: 7883457984641218643, guid: 38f1daacf76136d4795f2cf46f174301, type: 3}
+    countEnemies:
+    - 5
+    timeBetweenSpawns: 2
+  - enemies:
+    - {fileID: 7883457984641218643, guid: 38f1daacf76136d4795f2cf46f174301, type: 3}
+    - {fileID: 7883457984641218643, guid: 9d4af6f8aaa9a5e42b01a11e7a85b66d, type: 3}
+    countEnemies:
+    - 10
+    - 3
+    timeBetweenSpawns: 0
+  - enemies:
+    - {fileID: 7883457984641218643, guid: 38f1daacf76136d4795f2cf46f174301, type: 3}
+    - {fileID: 7883457984641218643, guid: 9d4af6f8aaa9a5e42b01a11e7a85b66d, type: 3}
+    - {fileID: 7883457984641218643, guid: ebb4d86dda1ed914c940e114e8b7ef5c, type: 3}
+    countEnemies:
+    - 10
+    - 8
+    - 4
+    timeBetweenSpawns: 0
+  - enemies:
+    - {fileID: 7883457984641218643, guid: 38f1daacf76136d4795f2cf46f174301, type: 3}
+    - {fileID: 7883457984641218643, guid: 9d4af6f8aaa9a5e42b01a11e7a85b66d, type: 3}
+    - {fileID: 7883457984641218643, guid: ebb4d86dda1ed914c940e114e8b7ef5c, type: 3}
+    - {fileID: 7883457984641218643, guid: 1988211fd7802d346a277e2a9f86cd00, type: 3}
+    countEnemies:
+    - 8
+    - 6
+    - 5
+    - 3
+    timeBetweenSpawns: 0
+  - enemies:
+    - {fileID: 7883457984641218643, guid: 38f1daacf76136d4795f2cf46f174301, type: 3}
+    - {fileID: 7883457984641218643, guid: 9d4af6f8aaa9a5e42b01a11e7a85b66d, type: 3}
+    - {fileID: 7883457984641218643, guid: ebb4d86dda1ed914c940e114e8b7ef5c, type: 3}
+    - {fileID: 7883457984641218643, guid: 1988211fd7802d346a277e2a9f86cd00, type: 3}
+    countEnemies:
+    - 10
+    - 8
+    - 7
+    - 4
+    timeBetweenSpawns: 0
+  - enemies:
+    - {fileID: 7883457984641218643, guid: 38f1daacf76136d4795f2cf46f174301, type: 3}
+    - {fileID: 7883457984641218643, guid: 9d4af6f8aaa9a5e42b01a11e7a85b66d, type: 3}
+    - {fileID: 7883457984641218643, guid: ebb4d86dda1ed914c940e114e8b7ef5c, type: 3}
+    - {fileID: 7883457984641218643, guid: 1988211fd7802d346a277e2a9f86cd00, type: 3}
+    countEnemies:
+    - 12
+    - 10
+    - 8
+    - 6
+    timeBetweenSpawns: 0
   timeToNextWaveUI: {fileID: 524743693}
   timer: 10
-  countEnemyTypeOne: 8
-  countEnemyTypeTwo: 7
-  countEnemyTypeThree: 6
-  countEnemyTypeFour: 5
+  lastCountWave: []
 --- !u!4 &617572649
 Transform:
   m_ObjectHideFlags: 0

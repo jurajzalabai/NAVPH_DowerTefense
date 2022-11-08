@@ -8,6 +8,7 @@ public class WeaponController : MonoBehaviour
     public Animator weaponAnimator;
     public GameObject weaponBarrel;
     public GameObject weaponBullet;
+    public Sprite weaponImage;
 
     [Header("Stats")]
     //public float force;
@@ -18,6 +19,10 @@ public class WeaponController : MonoBehaviour
     public float reloadTime;
     public float countAmmo;
     public float costAmmo;
+
+    [Header("Position offset")]
+    public float x;
+    public float y;
     //public float bulletDamage;
 
 
@@ -32,4 +37,5 @@ public class WeaponController : MonoBehaviour
     {
         
     }
+
 }

@@ -9,6 +9,8 @@ TagManager:
   - BuildingCell
   - Enemy
   - Waypoints
+  - Base
+  - Weapon
   layers:
   - Default
   - TransparentFX

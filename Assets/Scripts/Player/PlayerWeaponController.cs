@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class PlayerWeaponController : MonoBehaviour
 {
@@ -27,6 +29,8 @@ public class PlayerWeaponController : MonoBehaviour
     private bool canFire;
     private float timer;
     private float timerReload;
+
+    private int index = 0;
 
 
     private float refillAmmo = 0;
@@ -56,7 +60,7 @@ public class PlayerWeaponController : MonoBehaviour
         {
             if (SecretPathPlayerCollision.playerIn == false)
             {
-                Debug.Log("here");
+                //Debug.Log("here");
                 HandleShooting();
             }
 
@@ -71,9 +75,10 @@ public class PlayerWeaponController : MonoBehaviour
         }
     }
 
-    private void GetWeapon()
+    public void GetWeapon()
     {
-        currWeapon = transform.Find("Aim").transform.GetChild(0);
+        //Debug.Log(currWeapon.GetComponent<WeaponController>().countAmmo)
+        currWeapon = transform.Find("Aim").transform.GetChild(index);
         currWeaponAnimator = currWeapon.GetComponent<WeaponController>().weaponAnimator;
         currWeaponBarrel = currWeapon.GetComponent<WeaponController>().weaponBarrel;
         currWeaponBullet = currWeapon.GetComponent<WeaponController>().weaponBullet;
@@ -82,14 +87,6 @@ public class PlayerWeaponController : MonoBehaviour
         currWeaponReloadTime = currWeapon.GetComponent<WeaponController>().reloadTime;
         currWeaponMagazineCount = currWeapon.GetComponent<WeaponController>().magazineCount;
         currWeaponCountAmmo = currWeapon.GetComponent<WeaponController>().countAmmo;
-       /* if (currWeaponCountAmmo > currWeapon.GetComponent<WeaponController>().magazineSize)
-        {
-            currWeaponCountAmmo = currWeapon.GetComponent<WeaponController>().countAmmo - currWeaponMagazineSize;
-        }
-        else
-        {
-            currWeaponCountAmmo = currWeapon.GetComponent<WeaponController>().countAmmo - currWeaponMagazineCount;
-        }*/
         magazineUI.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = currWeaponMagazineCount.ToString() + "/" + currWeaponCountAmmo.ToString();
 
     }
@@ -119,26 +116,44 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            currWeapon.gameObject.SetActive(false);
-            aimTransform.transform.Find("Pistol").transform.SetSiblingIndex(0);
-            GetWeapon();
-            currWeapon.gameObject.SetActive(true);
-
+            SetGun(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            currWeapon.gameObject.SetActive(false);
-            aimTransform.transform.Find("M4").transform.SetSiblingIndex(0);
-            GetWeapon();
-            currWeapon.gameObject.SetActive(true);
+            SetGun(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            SetGun(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SetGun(3);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            SetGun(4);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            SetGun(5);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            SetGun(6);
+        }
+    }
+
+    private void SetGun(int param)
+    {
+        if (transform.Find("Aim").transform.childCount >= param + 1)
+        {
             currWeapon.gameObject.SetActive(false);
-            aimTransform.transform.Find("Uzi").transform.SetSiblingIndex(0);
+            index = param;
             GetWeapon();
             currWeapon.gameObject.SetActive(true);
         }
+      
     }
     
     private void HandleShooting()
@@ -153,7 +168,7 @@ public class PlayerWeaponController : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0) && canFire && !isMouseOver && currWeaponMagazineCount > 0 && !isReloading)
+        if (Input.GetMouseButton(0) && canFire && !isMouseOver && currWeaponMagazineCount > 0 && !isReloading && !IsPointerOverUIElement())
         {
             canFire = false;
             currWeaponMagazineCount -= 1;
@@ -177,7 +192,7 @@ public class PlayerWeaponController : MonoBehaviour
         while (!(timerReload > currWeaponReloadTime))
         {
             timerReload += Time.deltaTime;
-            reloadUI.transform.GetChild(0).transform.localScale = new Vector3(timerReload, 1, 1);
+            reloadUI.transform.GetChild(0).GetComponent<Image>().fillAmount = 1 - (timerReload / currWeaponReloadTime);
             yield return null;
         }
         //timerReload += Time.deltaTime;
@@ -198,7 +213,7 @@ public class PlayerWeaponController : MonoBehaviour
             }
             canFire = true;
             timerReload = 0;
-            reloadUI.transform.GetChild(0).transform.localScale = new Vector3(0, 1, 1);
+            reloadUI.transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
             if (currWeaponCountAmmo > currWeapon.GetComponent<WeaponController>().magazineSize)
             {
                 currWeaponMagazineCount += refillAmmo;
@@ -277,5 +292,30 @@ public class PlayerWeaponController : MonoBehaviour
         return GetMouseWolrdPositionWithZ(Input.mousePosition, worldCamera);
     }
 
-   
+
+    //code from https://answers.unity.com/questions/1095047/detect-mouse-events-for-ui-canvas.html
+    public static bool IsPointerOverUIElement()
+    {
+        return IsPointerOverUIElement(GetEventSystemRaycastResults());
+    }
+    ///Returns 'true' if we touched or hovering on Unity UI element.
+    public static bool IsPointerOverUIElement(List<RaycastResult> eventSystemRaysastResults)
+    {
+        for (int index = 0; index < eventSystemRaysastResults.Count; index++)
+        {
+            RaycastResult curRaysastResult = eventSystemRaysastResults[index];
+            if (curRaysastResult.gameObject.layer == LayerMask.NameToLayer("UI"))
+                return true;
+        }
+        return false;
+    }
+    ///Gets all event systen raycast results of current mouse or touch position.
+    static List<RaycastResult> GetEventSystemRaycastResults()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> raysastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raysastResults);
+        return raysastResults;
+    }
 }

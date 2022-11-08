@@ -25,7 +25,6 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-
             Camera.main.GetComponent<Camera>().orthographicSize = 3;
             tabPress = false;
         }
@@ -33,9 +32,15 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (tabPress == false)
+        if (tabPress == false && player != null)
         {
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 8.0f);
+        }
+        else
+        {
+            tabPress = true;
+            Camera.main.GetComponent<Camera>().orthographicSize = 8;
+            transform.position = new Vector3(0, 0, -12);
         }
     }
 }

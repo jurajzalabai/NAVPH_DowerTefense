@@ -8,7 +8,11 @@ public class BulletController : MonoBehaviour
     private Rigidbody2D rb;
     public float force;
     public float bulletDamage = 34;
+    public float defaultAdd;
+    public float costOfAmmo;
+    public string nameOfWeapon;
     private GameObject player;
+
 
     // Start is called before the first frame update
     void Awake()

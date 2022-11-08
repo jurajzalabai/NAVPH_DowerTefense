@@ -6,8 +6,17 @@ using UnityEngine.UI;
 public class HUDController : MonoBehaviour
 {
     private static int weaponCount = 0;
+    public GameObject player;
 
-    
+    private void Awake()
+    {
+        int poz = player.transform.Find("Aim").transform.childCount;
+        weaponCount = player.transform.Find("Aim").transform.childCount - 1;
+        for (int i = 0; i < poz; i++)
+        {
+            this.transform.GetChild(0).transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>().sprite = player.transform.Find("Aim").transform.GetChild(i).transform.GetComponent<WeaponController>().weaponImage;
+        }
+    }
     public void AddWeapon(GameObject weapon)
     {
         if (weaponCount >= 8)

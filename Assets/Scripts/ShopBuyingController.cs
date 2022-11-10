@@ -8,12 +8,13 @@ public class ShopBuyingController : MonoBehaviour
     public GameObject magazineUI;
     public GameObject HUDUI;
     public GameObject player;
+    public GameObject _base;
 
     public void buyAmmo(GameObject ammoType)
     {
         if (player.transform.Find("Aim").transform.Find(ammoType.GetComponent<BulletController>().nameOfWeapon))
         {
-            if (BuyCheck(ammoType.GetComponent<BulletController>().costOfAmmo))
+            if (BuyCheckAndBuy(ammoType.GetComponent<BulletController>().costOfAmmo))
             {
                 player.transform.Find("Aim").transform.Find(ammoType.GetComponent<BulletController>().nameOfWeapon).GetComponent<WeaponController>().countAmmo += ammoType.GetComponent<BulletController>().defaultAdd;
                 player.GetComponent<PlayerWeaponController>().GetWeapon();
@@ -29,7 +30,7 @@ public class ShopBuyingController : MonoBehaviour
         {
             if (!HUDUI.GetComponent<HUDController>().SameType(weaponType.GetComponent<WeaponController>().weaponBullet))
             {
-                if (BuyCheck(weaponType.GetComponent<WeaponController>().cost))
+                if (BuyCheckAndBuy(weaponType.GetComponent<WeaponController>().cost))
                 {
                     GameObject weapon = Instantiate(weaponType, player.transform.position, Quaternion.identity);
                     weapon.SetActive(false);
@@ -48,7 +49,56 @@ public class ShopBuyingController : MonoBehaviour
         //player.GetComponent<PlayerWeaponController>().GetWeapon();
     }
 
-    bool BuyCheck(float cost)
+    public void buyPlayerHealth()
+    {
+        if (BuyCheckAndBuy(100))
+        {
+            if (player.GetComponent<PlayerController>().health == player.GetComponent<PlayerController>().maxHealth)
+            {
+                InfoTextUIController.SetText("Full Health");
+                return;
+            }
+            else if (player.GetComponent<PlayerController>().health + 40 >= player.GetComponent<PlayerController>().maxHealth)
+            {
+                player.GetComponent<PlayerController>().health = player.GetComponent<PlayerController>().maxHealth;
+            }
+            else
+            {
+                player.GetComponent<PlayerController>().health += 40;
+
+            }
+            Vector3 locScale = player.GetComponent<PlayerController>().healthUI.transform.Find("Health").gameObject.transform.localScale;
+            player.GetComponent<PlayerController>().healthUI.transform.Find("Health").gameObject.transform.localScale = new Vector3(player.GetComponent<PlayerController>().health / player.GetComponent<PlayerController>().maxHealth, locScale.y, locScale.z);
+        }
+    }
+
+
+    public void buyBaseHealth()
+    {
+        if (BuyCheckAndBuy(150))
+        {
+            if (_base.GetComponent<BaseController>().health == _base.GetComponent<BaseController>().healthMax)
+            {
+                InfoTextUIController.SetText("Full Health of Base");
+                return;
+            }
+            else if (_base.GetComponent<BaseController>().health + 200 >= _base.GetComponent<BaseController>().healthMax)
+            {
+                _base.GetComponent<BaseController>().health = _base.GetComponent<BaseController>().healthMax;
+            }
+            else
+            {
+                _base.GetComponent<BaseController>().health += 200;
+
+            }
+            Vector3 locScale = _base.GetComponent<BaseController>().healthUI.transform.Find("Health").gameObject.transform.localScale;
+            _base.GetComponent<BaseController>().healthUI.transform.Find("Health").gameObject.transform.localScale = new Vector3(_base.GetComponent<BaseController>().health / _base.GetComponent<BaseController>().healthMax, locScale.y, locScale.z);
+        }
+    }
+
+
+
+    bool BuyCheckAndBuy(float cost)
     {
         if (PlayerController.money - cost < 0)
         {
@@ -58,6 +108,19 @@ public class ShopBuyingController : MonoBehaviour
         else
         {
             PlayerController.money -= cost;
+            return true;
+        }
+    }
+
+    bool BuyCheck(float cost)
+    {
+        if (PlayerController.money - cost < 0)
+        {
+            InfoTextUIController.SetText("Not enough money");
+            return false;
+        }
+        else
+        {
             return true;
         }
     }

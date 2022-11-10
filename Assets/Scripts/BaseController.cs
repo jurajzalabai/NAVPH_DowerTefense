@@ -5,8 +5,8 @@ using TMPro;
 
 public class BaseController : MonoBehaviour
 {
-    private float health = 2000;
-    private float healthMax = 2000;
+    public float health = 2000;
+    public float healthMax = 2000;
     public GameObject healthUI;
 
     

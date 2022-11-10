@@ -56,7 +56,7 @@ public class EnemySpawnerController : MonoBehaviour
         {
             countEnemy = lastCountWave;
         }
-        Debug.Log(lastCountWave);
+        //Debug.Log(lastCountWave);
         int i = 0;
         float count = 0;
         foreach (var item in countEnemy)

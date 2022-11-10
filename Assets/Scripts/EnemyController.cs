@@ -68,6 +68,7 @@ public class EnemyController : MonoBehaviour
                 {
                     canHit = false;
                     collision.transform.parent.gameObject.GetComponent<BaseController>().Damaged(damage);
+                    this.GetComponent<EnemyController>().Damaged(10);
                 }
 
                 if (!canHit)

@@ -5,7 +5,8 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    private float health = 100;
+    public float health = 150;
+    public float maxHealth = 150;
     private float shield = 0;
     private float speed = 5;
     public GameObject healthUI;
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour
             Destroy(this.gameObject);
         }
         Vector3 locScale = healthUI.transform.Find("Health").gameObject.transform.localScale;
-        healthUI.transform.Find("Health").gameObject.transform.localScale = new Vector3(health / 100, locScale.y, locScale.z);
+        healthUI.transform.Find("Health").gameObject.transform.localScale = new Vector3(health / maxHealth, locScale.y, locScale.z);
 
     }
 
@@ -60,4 +61,5 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+
 }

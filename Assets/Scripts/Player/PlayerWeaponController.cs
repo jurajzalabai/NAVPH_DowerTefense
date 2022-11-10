@@ -62,6 +62,11 @@ public class PlayerWeaponController : MonoBehaviour
             {
                 //Debug.Log("here");
                 HandleShooting();
+                reloadUI.transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
+            }
+            else
+            {
+                reloadUI.transform.GetChild(0).GetComponent<Image>().fillAmount = 1;
             }
 
             HandleAiming();

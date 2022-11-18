@@ -119,33 +119,35 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void HandleInventory()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SetGun(0);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SetGun(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SetGun(2);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            SetGun(3);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            SetGun(4);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            SetGun(5);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            SetGun(6);
+        if (!PlayerController.builderMode) {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SetGun(0);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                SetGun(1);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                SetGun(2);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                SetGun(3);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                SetGun(4);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                SetGun(5);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha7))
+            {
+                SetGun(6);
+            }
         }
     }
 
@@ -173,7 +175,7 @@ public class PlayerWeaponController : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0) && canFire && !isMouseOver && currWeaponMagazineCount > 0 && !isReloading && !IsPointerOverUIElement())
+        if (Input.GetMouseButton(0) && canFire && !isMouseOver && currWeaponMagazineCount > 0 && !isReloading && !IsPointerOverUIElement() && PlayerController.builderMode == false)
         {
             canFire = false;
             currWeaponMagazineCount -= 1;

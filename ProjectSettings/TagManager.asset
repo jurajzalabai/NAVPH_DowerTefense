@@ -11,6 +11,7 @@ TagManager:
   - Waypoints
   - Base
   - Weapon
+  - Tower
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Environment
   - Water
   - UI
-  - 
+  - TowerBullet
   - Player
   - 
   - 

@@ -7,6 +7,7 @@ public class ShopBuyingController : MonoBehaviour
 {
     public GameObject magazineUI;
     public GameObject HUDUI;
+    public GameObject TowerHUDUI;
     public GameObject player;
     public GameObject _base;
 
@@ -93,6 +94,18 @@ public class ShopBuyingController : MonoBehaviour
             }
             Vector3 locScale = _base.GetComponent<BaseController>().healthUI.transform.Find("Health").gameObject.transform.localScale;
             _base.GetComponent<BaseController>().healthUI.transform.Find("Health").gameObject.transform.localScale = new Vector3(_base.GetComponent<BaseController>().health / _base.GetComponent<BaseController>().healthMax, locScale.y, locScale.z);
+        }
+    }
+
+    public void buyTower(GameObject towerType)
+    {
+        if (TowerHUDUI.GetComponent<TowerHUD>().CanAdd()) {
+            if (BuyCheckAndBuy(towerType.GetComponent<TowerController>().cost)) {
+                GameObject tower = Instantiate(towerType, player.transform.position, Quaternion.identity);
+                tower.transform.parent = player.transform.Find("Towers");
+                tower.SetActive(false);
+                TowerHUDUI.GetComponent<TowerHUD>().AddTower(towerType);
+            }
         }
     }
 

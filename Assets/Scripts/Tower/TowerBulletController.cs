@@ -11,9 +11,16 @@ public class TowerBulletController : MonoBehaviour
 
     private float bulletDamage;
 
+    private float explosionRadius = 0.0f;
+
     public void SetDamage(float towerDamage)
     {
         bulletDamage = towerDamage;
+    }
+
+    public void SetExplosionRadius(float explosionRadius)
+    {
+        this.explosionRadius = explosionRadius;
     }
 
     public void Chase(Transform _target)
@@ -52,8 +59,25 @@ public class TowerBulletController : MonoBehaviour
             }
             else if (collision.gameObject.tag == "Enemy")
             {
-                collision.gameObject.GetComponent<EnemyController>().Damaged(bulletDamage);
+                if(explosionRadius == 0.0f){
+                    collision.gameObject.GetComponent<EnemyController>().Damaged(bulletDamage);
+                } else {
+                    // collision.gameObject.GetComponent<EnemyController>().Slow(0.5f, 1f);
+                    Explode();
+                }
                 Destroy(this.gameObject);
+            }
+        }
+    }
+
+    private void Explode()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        Debug.Log(colliders.Length);
+
+        foreach(Collider2D collider in colliders){
+            if(collider.gameObject.tag == "Enemy"){
+                collider.gameObject.GetComponent<EnemyController>().Damaged(bulletDamage);
             }
         }
     }

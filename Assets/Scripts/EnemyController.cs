@@ -37,6 +37,10 @@ public class EnemyController : MonoBehaviour
         
     }
 
+    public void Slow(float slowMultiplier, float slowDuration){ 
+        // aiPath.maxSpeed(0.5f);
+    }
+
     // Update is called once per frame
     void Update()
     {

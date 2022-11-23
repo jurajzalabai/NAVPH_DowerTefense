@@ -82,6 +82,7 @@ public class TowerController : MonoBehaviour
         TowerBulletController bullet = BulletGO.GetComponent<TowerBulletController>();
 
         bullet.SetDamage(damage);
+        bullet.SetExplosionRadius(splashArea);
 
         if (bullet != null){
             bullet.Chase(target);

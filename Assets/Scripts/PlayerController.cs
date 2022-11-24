@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using Pathfinding;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,11 +19,10 @@ public class PlayerController : MonoBehaviour
 
     public static float money = 1000;
 
-
     // Start is called before the first frame update
     void Start()
     {
-        
+        //enemy.GetComponent<AIPath>().speed =
     }
 
     // Update is called once per frame

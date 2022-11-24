@@ -101,6 +101,7 @@ public class ShopBuyingController : MonoBehaviour
     {
         if (TowerHUDUI.GetComponent<TowerHUD>().CanAdd()) {
             if (BuyCheckAndBuy(towerType.GetComponent<TowerController>().cost)) {
+                Debug.Log("buy");
                 GameObject tower = Instantiate(towerType, player.transform.position, Quaternion.identity);
                 tower.transform.parent = player.transform.Find("Towers");
                 tower.SetActive(false);

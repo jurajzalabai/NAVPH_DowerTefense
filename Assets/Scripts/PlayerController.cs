@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public GameObject moneyUI;
     public KeyCode builderModeKey;
 
+    public GameObject HUDUI;
+    public GameObject TowerHUDUI;
+
     public static bool builderMode = false;
 
     public static float money = 1000;
@@ -32,6 +35,19 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(builderModeKey)) {
             builderMode = !builderMode;
+            if (builderMode)
+            {
+                if (transform.Find("Towers").transform.childCount >= 1){
+                    SetTower(0);
+                }
+                HUDUI.SetActive(false);
+                TowerHUDUI.SetActive(true);
+            }
+            else
+            {
+                HUDUI.SetActive(true);
+                TowerHUDUI.SetActive(false);
+            }
             Debug.Log("Builder mode active: " + builderMode);
         }
 

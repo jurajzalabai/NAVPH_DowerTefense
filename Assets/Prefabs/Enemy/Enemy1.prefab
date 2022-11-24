@@ -428,8 +428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3defcfc2ff75111408734fc9c8cabd39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: 100
-  health: 100
+  fullHealth: 200
+  health: 200
   damage: 20
   hitRate: 0.5
   bloodEffect: {fileID: 4420433148471242012, guid: 893ceef80655a1e4a83a1acbff05b020, type: 3}

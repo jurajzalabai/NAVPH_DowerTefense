@@ -15,6 +15,7 @@ public class PlayerWeaponController : MonoBehaviour
     public Animator pointAnimator;
     public GameObject reloadUI;
     public GameObject magazineUI;
+    public GameObject HUDUI;
 
     private Transform currWeapon;
     private Animator currWeaponAnimator;
@@ -120,8 +121,10 @@ public class PlayerWeaponController : MonoBehaviour
     private void HandleInventory()
     {
         if (!PlayerController.builderMode) {
+            reloadUI.transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
+                HUDUI.GetComponent<HUDController>().setActiveSlot(index);
                 SetGun(0);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -149,12 +152,17 @@ public class PlayerWeaponController : MonoBehaviour
                 SetGun(6);
             }
         }
+        else
+        {
+            reloadUI.transform.GetChild(0).GetComponent<Image>().fillAmount = 1;
+        }
     }
 
     private void SetGun(int param)
     {
         if (transform.Find("Aim").transform.childCount >= param + 1)
         {
+            HUDUI.GetComponent<HUDController>().setActiveSlot(param);
             currWeapon.gameObject.SetActive(false);
             index = param;
             GetWeapon();

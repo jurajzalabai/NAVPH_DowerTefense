@@ -8,6 +8,10 @@ public class HUDController : MonoBehaviour
     private static int weaponCount = 0;
     public GameObject player;
 
+    public Color activeColor;
+    private Color oldColor;
+    private int activeSlot = -1;
+
     private void Awake()
     {
         int poz = player.transform.Find("Aim").transform.childCount;
@@ -59,5 +63,21 @@ public class HUDController : MonoBehaviour
         }
         
         return false;
+    }
+
+    public void setActiveSlot(int index)
+    {
+        if (activeSlot > -1 && oldColor != null)
+        {
+            this.transform.GetChild(0).transform.GetChild(activeSlot).transform.GetComponent<Image>().color = oldColor;
+        }
+
+        if (index > -1)
+        {
+            Image img = this.transform.GetChild(0).transform.GetChild(index).GetComponent<Image>();
+            oldColor = img.color;
+            img.color = activeColor;
+        }
+        activeSlot = index;
     }
 }

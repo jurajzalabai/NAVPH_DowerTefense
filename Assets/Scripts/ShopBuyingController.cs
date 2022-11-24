@@ -52,7 +52,7 @@ public class ShopBuyingController : MonoBehaviour
 
     public void buyPlayerHealth()
     {
-        if (BuyCheckAndBuy(100))
+        if (BuyCheck(200))
         {
             if (player.GetComponent<PlayerController>().health == player.GetComponent<PlayerController>().maxHealth)
             {
@@ -68,6 +68,7 @@ public class ShopBuyingController : MonoBehaviour
                 player.GetComponent<PlayerController>().health += 40;
 
             }
+            BuyCheckAndBuy(200);
             Vector3 locScale = player.GetComponent<PlayerController>().healthUI.transform.Find("Health").gameObject.transform.localScale;
             player.GetComponent<PlayerController>().healthUI.transform.Find("Health").gameObject.transform.localScale = new Vector3(player.GetComponent<PlayerController>().health / player.GetComponent<PlayerController>().maxHealth, locScale.y, locScale.z);
         }
@@ -76,7 +77,7 @@ public class ShopBuyingController : MonoBehaviour
 
     public void buyBaseHealth()
     {
-        if (BuyCheckAndBuy(150))
+        if (BuyCheck(250))
         {
             if (_base.GetComponent<BaseController>().health == _base.GetComponent<BaseController>().healthMax)
             {
@@ -92,6 +93,7 @@ public class ShopBuyingController : MonoBehaviour
                 _base.GetComponent<BaseController>().health += 200;
 
             }
+            BuyCheckAndBuy(250);
             Vector3 locScale = _base.GetComponent<BaseController>().healthUI.transform.Find("Health").gameObject.transform.localScale;
             _base.GetComponent<BaseController>().healthUI.transform.Find("Health").gameObject.transform.localScale = new Vector3(_base.GetComponent<BaseController>().health / _base.GetComponent<BaseController>().healthMax, locScale.y, locScale.z);
         }
@@ -125,6 +127,8 @@ public class ShopBuyingController : MonoBehaviour
             return true;
         }
     }
+
+
 
     bool BuyCheck(float cost)
     {

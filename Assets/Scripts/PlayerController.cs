@@ -25,13 +25,15 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //enemy.GetComponent<AIPath>().speed =
+        Vector3 locScale = healthUI.transform.Find("Health").gameObject.transform.localScale;
+        healthUI.transform.Find("Health").gameObject.transform.localScale = new Vector3(health / maxHealth, locScale.y, locScale.z);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        moneyUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = money.ToString();
+        moneyUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = money.ToString() + "$";
 
         if(Input.GetKeyDown(builderModeKey)) {
             builderMode = !builderMode;

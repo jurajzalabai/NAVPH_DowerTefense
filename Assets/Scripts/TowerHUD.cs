@@ -55,7 +55,13 @@ public class TowerHUD : MonoBehaviour
             Image currImage = this.transform.GetChild(0).transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).transform.GetComponent<Image>();
             currImage.sprite = nextImage?.sprite;
         }
-
+        if (player.transform.Find("Towers").transform.childCount >= 1)
+        {
+            //activeSlot = player.transform.Find("Towers").transform.childCount - 1;
+            GameObject turret = player.transform.Find("Towers").transform.GetChild(player.transform.Find("Towers").transform.childCount - 1).gameObject;
+            TurretBuildManager.instance.SetTurretToBuild(turret, player.transform.Find("Towers").transform.childCount - 1);
+            setActiveSlot(player.transform.Find("Towers").transform.childCount - 1);
+        }
         towerCount -= 1;
     }
 

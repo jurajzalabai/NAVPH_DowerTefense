@@ -214,9 +214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c16f3527ce28424980957a02f1b26b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
+  range: 4
   damage: 4
-  fireRate: 4
+  fireRate: 3
   cost: 200
   splashArea: 0
   slowDuration: 1

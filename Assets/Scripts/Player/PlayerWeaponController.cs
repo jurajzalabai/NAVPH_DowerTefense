@@ -66,6 +66,7 @@ public class PlayerWeaponController : MonoBehaviour
                 ShowWeapon();
                 HandleShooting();
                 reloadUI.transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
+                HandleReloading();
             }
             else
             {
@@ -79,8 +80,6 @@ public class PlayerWeaponController : MonoBehaviour
             {
                 HandleInventory();
             }
-            HandleReloading();
-
         }
     }
 

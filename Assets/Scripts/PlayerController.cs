@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     public static bool builderMode = false;
 
-    public static float money = 1000;
+    public static float money = 2500;
 
     // Start is called before the first frame update
     void Start()
@@ -121,26 +121,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public static void KillAddMoney(string name)
+    public static void KillAddMoney(GameObject enemy)
     {
-        switch (name)
-        {
-            case "Enemy1(Clone)":
-                money += 10;
-                break;
-            case "Enemy2(Clone)":
-                money += 5;
-                break;
-            case "Enemy3(Clone)":
-                money += 20;
-                break;
-            case "Enemy4(Clone)":
-                money += 25;
-                break;
-            default:
-                money += 10;
-                break;
-        }
+        money += enemy.GetComponent<EnemyController>().killedMoney;
     }
 
 }

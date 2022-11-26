@@ -432,6 +432,7 @@ MonoBehaviour:
   health: 200
   damage: 20
   hitRate: 0.5
+  killedMoney: 20
   bloodEffect: {fileID: 4420433148471242012, guid: 893ceef80655a1e4a83a1acbff05b020, type: 3}
 --- !u!1 &7883457984698255840
 GameObject:

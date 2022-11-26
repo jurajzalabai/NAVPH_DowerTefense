@@ -73,7 +73,7 @@ public class TowerBulletController : MonoBehaviour
     private void Explode()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-        Debug.Log(colliders.Length);
+        //Debug.Log(colliders.Length);
 
         foreach(Collider2D collider in colliders){
             if(collider.gameObject.tag == "Enemy"){

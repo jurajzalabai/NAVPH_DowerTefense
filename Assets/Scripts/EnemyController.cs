@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public float health;
     public float damage;
     public float hitRate;
+    public float killedMoney;
 
     private bool canHit = true;
     private float timer = 0;
@@ -28,7 +29,7 @@ public class EnemyController : MonoBehaviour
         health -= bulletDamage;
         if (health <= 0)
         {
-            PlayerController.KillAddMoney(this.gameObject.transform.name);
+            PlayerController.KillAddMoney(this.gameObject);
             GameObject blood = Instantiate(bloodEffect, this.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }

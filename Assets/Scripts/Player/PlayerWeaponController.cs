@@ -38,6 +38,7 @@ public class PlayerWeaponController : MonoBehaviour
     private bool isMouseOver = false;
     private bool isReloading = false;
 
+
     //public GameObject barell;
     //public GameObject bullet;
     // Start is called before the first frame update
@@ -48,6 +49,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     void Awake()
     {
+
         GetWeapon();
         aimTransform = transform.Find("Aim");
       
@@ -59,14 +61,15 @@ public class PlayerWeaponController : MonoBehaviour
 
         if (CameraController.tabPress == false)
         {
-            if (SecretPathPlayerCollision.playerIn == false)
+            if (SecretPathPlayerCollision.playerIn == false && PlayerController.builderMode == false)
             {
-                //Debug.Log("here");
+                ShowWeapon();
                 HandleShooting();
                 reloadUI.transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
             }
             else
             {
+                HideWeapon();
                 reloadUI.transform.GetChild(0).GetComponent<Image>().fillAmount = 1;
             }
 
@@ -94,7 +97,16 @@ public class PlayerWeaponController : MonoBehaviour
         currWeaponMagazineCount = currWeapon.GetComponent<WeaponController>().magazineCount;
         currWeaponCountAmmo = currWeapon.GetComponent<WeaponController>().countAmmo;
         magazineUI.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = currWeaponMagazineCount.ToString() + "/" + currWeaponCountAmmo.ToString();
+    }
 
+    public void HideWeapon()
+    {
+        currWeapon.transform.gameObject.SetActive(false);
+    }
+
+    public void ShowWeapon()
+    {
+        currWeapon.transform.gameObject.SetActive(true);
     }
 
     private void HandleReloading()

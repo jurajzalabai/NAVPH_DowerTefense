@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class EnemyController : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class EnemyController : MonoBehaviour
     private float timer = 0;
     public GameObject bloodEffect;
 
+    private float startSpeed;
+
+    private float slowTime;
+
+    private AIPath aiPath;
+
     private void Awake()
     {
         Vector3 locScale = this.transform.Find("UI").transform.Find("EnemyHealthUI").transform.Find("Health").gameObject.transform.localScale;
@@ -22,7 +29,8 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     { 
-
+        aiPath = gameObject.GetComponent<AIPath>();
+        startSpeed = aiPath.maxSpeed;
     }
     public void Damaged(float bulletDamage)
     {
@@ -39,13 +47,19 @@ public class EnemyController : MonoBehaviour
     }
 
     public void Slow(float slowMultiplier, float slowDuration){ 
-        // aiPath.maxSpeed(0.5f);
+        aiPath.maxSpeed = (1 - slowMultiplier) * startSpeed;
+        slowTime = slowDuration;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(slowTime > 0f){
+            slowTime -= Time.deltaTime;
+        }
+        else{
+            aiPath.maxSpeed = startSpeed;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)

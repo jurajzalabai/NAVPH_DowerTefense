@@ -82,6 +82,8 @@ public class TowerController : MonoBehaviour
         TowerBulletController bullet = BulletGO.GetComponent<TowerBulletController>();
 
         bullet.SetDamage(damage);
+        bullet.setSlowDuration(slowDuration);
+        bullet.setSlowMultiplier(slowMultiplier);
         bullet.SetExplosionRadius(splashArea);
 
         if (bullet != null){

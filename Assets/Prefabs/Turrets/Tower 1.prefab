@@ -215,9 +215,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 5
-  damage: 30
+  damage: 20
   fireRate: 0.2
-  cost: 300
+  cost: 400
   splashArea: 5
   slowDuration: 1
   turnSpeed: 400

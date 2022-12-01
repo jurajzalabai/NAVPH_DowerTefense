@@ -18,6 +18,8 @@ public class EnemySpawnerController : MonoBehaviour
 
     public float[] lastCountWave;
 
+    public static float difficulty = 0.5f;
+
     //public float countEnemyTypeOne;
     //public float countEnemyTypeTwo;
     //public float countEnemyTypeThree;

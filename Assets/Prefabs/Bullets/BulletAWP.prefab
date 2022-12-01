@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9557977312985498098fb78eaf4468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 25
-  bulletDamage: 100
+  force: 30
+  bulletDamage: 150
   defaultAdd: 5
   costOfAmmo: 100
   nameOfWeapon: AWP

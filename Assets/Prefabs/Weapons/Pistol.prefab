@@ -186,7 +186,7 @@ MonoBehaviour:
   magazineCount: 12
   cost: 100
   reloadTime: 0.6
-  countAmmo: 96
+  countAmmo: 240
   costAmmo: 20
   x: 1.913
   y: -0.139

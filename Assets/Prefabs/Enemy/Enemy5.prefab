@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 7883457983592824829}
   - component: {fileID: 7883457984641218646}
   m_Layer: 0
-  m_Name: Enemy4
+  m_Name: Enemy5
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,7 +254,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 51bae32ec1b22bf4597d4b37f2122e23, type: 3}
-  m_Color: {r: 0, g: 0.9904895, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.97001815, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   radius: 0.5
   height: 2
   canMove: 1
-  maxSpeed: 1.2
+  maxSpeed: 3
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -428,12 +428,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3defcfc2ff75111408734fc9c8cabd39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: 240
-  health: 240
+  fullHealth: 120
+  health: 120
   damage: 50
   hitRate: 0.5
-  killedMoney: 50
-  bloodEffect: {fileID: 4420433148471242012, guid: 6f61bde40d7b53648b15bd06b0b6ade5, type: 3}
+  killedMoney: 100
+  bloodEffect: {fileID: 4420433148471242012, guid: 4f2127d8899c4cf41ab9cd8dea865ae4, type: 3}
 --- !u!1 &7883457984698255840
 GameObject:
   m_ObjectHideFlags: 0

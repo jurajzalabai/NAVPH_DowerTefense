@@ -11,11 +11,24 @@ public class TowerBulletController : MonoBehaviour
 
     private float bulletDamage;
 
+    private float _slowMultiplier = 0f;
+
+    private float _slowDuration = 2.0f;
+
     private float explosionRadius = 0.0f;
 
     public void SetDamage(float towerDamage)
     {
         bulletDamage = towerDamage;
+    }
+
+    public void setSlowMultiplier(float slowMultiplier)
+    {
+        _slowMultiplier = slowMultiplier;
+    }
+    public void setSlowDuration(float slowDuration)
+    {
+        _slowDuration = slowDuration;
     }
 
     public void SetExplosionRadius(float explosionRadius)
@@ -61,8 +74,11 @@ public class TowerBulletController : MonoBehaviour
             {
                 if(explosionRadius == 0.0f){
                     collision.gameObject.GetComponent<EnemyController>().Damaged(bulletDamage);
+                    
+                    if(_slowMultiplier > 0.0f){
+                        collision.gameObject.GetComponent<EnemyController>().Slow(_slowMultiplier, _slowDuration);
+                    }
                 } else {
-                    // collision.gameObject.GetComponent<EnemyController>().Slow(0.5f, 1f);
                     Explode();
                 }
                 Destroy(this.gameObject);
@@ -73,11 +89,14 @@ public class TowerBulletController : MonoBehaviour
     private void Explode()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-        //Debug.Log(colliders.Length);
 
         foreach(Collider2D collider in colliders){
             if(collider.gameObject.tag == "Enemy"){
-                collider.gameObject.GetComponent<EnemyController>().Damaged(bulletDamage);
+                EnemyController enemyController = collider.gameObject.GetComponent<EnemyController>();
+                enemyController.Damaged(bulletDamage);
+                if(_slowMultiplier > 0.0f){
+                    enemyController.Slow(_slowMultiplier, _slowDuration);
+                }
             }
         }
     }

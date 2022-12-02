@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 873144845369015619}
   - component: {fileID: 873144845369015616}
   m_Layer: 0
-  m_Name: Tower 1
+  m_Name: SplashDamageTurret
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   damage: 20
   fireRate: 0.2
   cost: 400
-  splashArea: 5
+  splashArea: 2.5
   slowDuration: 1
   turnSpeed: 400
   slowMultiplier: 0.5
@@ -226,6 +226,6 @@ MonoBehaviour:
   fireCountdown: 0
   enemyTag: Enemy
   firePoint: {fileID: 873144844863845143}
-  bulletPrefab: {fileID: 2303632304546048471, guid: cda50b1e828744fa2a88ceeb3caa39ec, type: 3}
+  bulletPrefab: {fileID: 2303632304546048471, guid: 35648c043fc3243f5825dcb46aa75275, type: 3}
   towerRotate: {fileID: 873144845369015618}
   towerImage: {fileID: 21300000, guid: f86f78f897962544a99612be8b927cfe, type: 3}

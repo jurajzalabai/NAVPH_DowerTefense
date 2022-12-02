@@ -17,6 +17,8 @@ public class TowerBulletController : MonoBehaviour
 
     private float explosionRadius = 0.0f;
 
+    public GameObject explosionEffect;
+
     public void SetDamage(float towerDamage)
     {
         bulletDamage = towerDamage;
@@ -72,6 +74,10 @@ public class TowerBulletController : MonoBehaviour
             }
             else if (collision.gameObject.tag == "Enemy")
             {
+                if(explosionEffect){
+                    GameObject explosion = (GameObject) Instantiate(explosionEffect, transform.position, transform.rotation);
+                    Destroy(explosion, 1f);
+                }
                 if(explosionRadius == 0.0f){
                     collision.gameObject.GetComponent<EnemyController>().Damaged(bulletDamage);
                     

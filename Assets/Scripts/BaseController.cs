@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BaseController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class BaseController : MonoBehaviour
             InfoTextUIController.SetText("Base destroyed");
             Destroy(healthUI.gameObject);
             Destroy(this.gameObject);
+            SceneManager.LoadScene(3);
         }
         Vector3 locScale = healthUI.transform.Find("Health").gameObject.transform.localScale;
         healthUI.transform.Find("Health").gameObject.transform.localScale = new Vector3(health / healthMax, locScale.y, locScale.z);

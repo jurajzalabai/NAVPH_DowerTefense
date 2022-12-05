@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Pathfinding;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -115,6 +116,7 @@ public class PlayerController : MonoBehaviour
         {
             InfoTextUIController.SetText("Player dead");
             Destroy(this.gameObject);
+            SceneManager.LoadScene(3);
         }
         Vector3 locScale = healthUI.transform.Find("Health").gameObject.transform.localScale;
         healthUI.transform.Find("Health").gameObject.transform.localScale = new Vector3(health / maxHealth, locScale.y, locScale.z);

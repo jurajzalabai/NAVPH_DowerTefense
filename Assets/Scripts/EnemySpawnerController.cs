@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawnerController : MonoBehaviour
 {
@@ -95,6 +96,7 @@ public class EnemySpawnerController : MonoBehaviour
         else
         {
             Debug.Log("Zly pocet vo waves");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         
     }

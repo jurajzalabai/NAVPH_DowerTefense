@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public GameObject HUDUI;
     public GameObject TowerHUDUI;
 
+    public AudioSource damagedSound;
+
     public static bool builderMode = false;
 
     public static float money = 1000;
@@ -112,6 +114,7 @@ public class PlayerController : MonoBehaviour
     public void Damaged(float hitDamage)
     {
         health -= hitDamage;
+        damagedSound.Play();
         if (health <= 0)
         {
             InfoTextUIController.SetText("Player dead");

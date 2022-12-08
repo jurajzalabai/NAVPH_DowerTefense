@@ -11,12 +11,15 @@ public class ShopBuyingController : MonoBehaviour
     public GameObject player;
     public GameObject _base;
 
+    public AudioSource buySound;
+
     public void buyAmmo(GameObject ammoType)
     {
         if (player.transform.Find("Aim").transform.Find(ammoType.GetComponent<BulletController>().nameOfWeapon))
         {
             if (BuyCheckAndBuy(ammoType.GetComponent<BulletController>().costOfAmmo))
             {
+                buySound.Play();
                 player.transform.Find("Aim").transform.Find(ammoType.GetComponent<BulletController>().nameOfWeapon).GetComponent<WeaponController>().countAmmo += ammoType.GetComponent<BulletController>().defaultAdd;
                 player.GetComponent<PlayerWeaponController>().GetWeapon();
                 //PlayerController.money -= ammoType.GetComponent<BulletController>().costOfAmmo;
@@ -33,6 +36,7 @@ public class ShopBuyingController : MonoBehaviour
             {
                 if (BuyCheckAndBuy(weaponType.GetComponent<WeaponController>().cost))
                 {
+                    buySound.Play();
                     GameObject weapon = Instantiate(weaponType, player.transform.position, Quaternion.identity);
                     weapon.SetActive(false);
                     weapon.transform.parent = player.transform.Find("Aim");
@@ -68,6 +72,7 @@ public class ShopBuyingController : MonoBehaviour
                 player.GetComponent<PlayerController>().health += 40;
 
             }
+            buySound.Play();
             BuyCheckAndBuy(100);
             Vector3 locScale = player.GetComponent<PlayerController>().healthUI.transform.Find("Health").gameObject.transform.localScale;
             player.GetComponent<PlayerController>().healthUI.transform.Find("Health").gameObject.transform.localScale = new Vector3(player.GetComponent<PlayerController>().health / player.GetComponent<PlayerController>().maxHealth, locScale.y, locScale.z);
@@ -93,6 +98,7 @@ public class ShopBuyingController : MonoBehaviour
                 _base.GetComponent<BaseController>().health += 200;
 
             }
+            buySound.Play();
             BuyCheckAndBuy(100);
             Vector3 locScale = _base.GetComponent<BaseController>().healthUI.transform.Find("Health").gameObject.transform.localScale;
             _base.GetComponent<BaseController>().healthUI.transform.Find("Health").gameObject.transform.localScale = new Vector3(_base.GetComponent<BaseController>().health / _base.GetComponent<BaseController>().healthMax, locScale.y, locScale.z);
@@ -103,6 +109,7 @@ public class ShopBuyingController : MonoBehaviour
     {
         if (TowerHUDUI.GetComponent<TowerHUD>().CanAdd()) {
             if (BuyCheckAndBuy(towerType.GetComponent<TowerController>().cost)) {
+                buySound.Play();
                 Debug.Log("buy");
                 GameObject tower = Instantiate(towerType, player.transform.position, Quaternion.identity);
                 tower.transform.parent = player.transform.Find("Towers");

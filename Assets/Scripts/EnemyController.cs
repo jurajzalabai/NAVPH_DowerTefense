@@ -23,8 +23,13 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-        fullHealth = fullHealth * EnemySpawnerController.difficulty;
-        health = health * EnemySpawnerController.difficulty;
+        if (EnemySpawnerController.difficulty != 0)
+        {
+            fullHealth = fullHealth * EnemySpawnerController.difficulty;
+            health = health * EnemySpawnerController.difficulty;
+        }
+      
+        
 
         Vector3 locScale = this.transform.Find("UI").transform.Find("EnemyHealthUI").transform.Find("Health").gameObject.transform.localScale;
         this.transform.Find("UI").transform.Find("EnemyHealthUI").transform.Find("Health").gameObject.transform.localScale = new Vector3((health / fullHealth), locScale.y, locScale.z);

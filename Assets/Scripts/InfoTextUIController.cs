@@ -17,7 +17,7 @@ public class InfoTextUIController : MonoBehaviour
     {
         if (textUI.GetComponent<TextMeshProUGUI>().alpha > 0)
         {
-            textUI.GetComponent<TextMeshProUGUI>().alpha -= (0.3f * Time.deltaTime);
+            textUI.GetComponent<TextMeshProUGUI>().alpha -= (0.2f * Time.deltaTime);
         }
     }
 

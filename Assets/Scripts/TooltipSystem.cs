@@ -16,12 +16,10 @@ public class TooltipSystem : MonoBehaviour
     }
 
     public static void Show(){
-        Debug.Log(current.tooltip.transform.name);
         current.tooltip.gameObject.SetActive(true);
     }
 
     public static void Hide(){
-        Debug.Log(current.tooltip.transform.name);
         current.tooltip.gameObject.SetActive(false);
     }
 

@@ -49,7 +49,9 @@ public class EnemySpawnerController : MonoBehaviour
     private void SpawnWaves()
     {
         
-            StartCoroutine(SpawnWave(waves[waveCounter].countEnemies, waves[waveCounter].enemies));
+        StartCoroutine(SpawnWave(waves[waveCounter].countEnemies, waves[waveCounter].enemies));
+        
+        
         
     }
 
@@ -93,6 +95,10 @@ public class EnemySpawnerController : MonoBehaviour
 
             for (float timeLeft = timer; timeLeft > 0; timeLeft -= Time.deltaTime)
             {
+                if (waves.Length == waveCounter)
+                {
+                    SceneManager.LoadScene(1);
+                }
                 timeToNextWaveUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ((int)timeLeft).ToString();
                 yield return null;
             }

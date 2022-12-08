@@ -105,6 +105,8 @@ public class PlayerController : MonoBehaviour
         if (transform.Find("Towers").transform.childCount >= param + 1)
         {
             GameObject turret = transform.Find("Towers").transform.GetChild(param).gameObject;
+            Debug.Log(turret);
+            Debug.Log(TurretBuildManager.instance);
             TurretBuildManager.instance.SetTurretToBuild(turret, param);
         }
     }

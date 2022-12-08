@@ -24,7 +24,9 @@ public class ShopController : MonoBehaviour
         if (collider.tag == "Player")
         {
             OpenShop();
-            indicator.SetActive(false);
+            if(indicator != null) {
+                indicator.SetActive(false);
+            }
         }
     }
 

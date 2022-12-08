@@ -141,3 +141,4 @@ MonoBehaviour:
   defaultAdd: 12
   costOfAmmo: 20
   nameOfWeapon: Pistol
+  weaponAudio: {fileID: 0}

@@ -21,6 +21,8 @@ public class EnemySpawnerController : MonoBehaviour
 
     public static float difficulty = 0.6f;
 
+    public AudioSource waveStartSound;
+
     public void SetDifficulty(float value)
     {
         difficulty = value;
@@ -57,6 +59,7 @@ public class EnemySpawnerController : MonoBehaviour
 
     IEnumerator SpawnWave(float[] countEnemy, GameObject[] enemies)
     {
+        waveStartSound.Play();
         timeToNextWaveUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (waveCounter + 1).ToString();
         if (waves.Length - 1 != waveCounter)
         {

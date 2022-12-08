@@ -10,11 +10,14 @@ public class BaseController : MonoBehaviour
     public float healthMax = 2000;
     public GameObject healthUI;
 
+    public AudioSource damagedSound;
+
     
 
     public void Damaged(float hitDamage)
     {
         health -= hitDamage;
+        damagedSound.Play();
         if (health <= 0)
         {
             InfoTextUIController.SetText("Base destroyed");

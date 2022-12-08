@@ -17,6 +17,8 @@ public class TowerController : MonoBehaviour
     public bool splashDamage = false;
     public float fireCountdown = 0f;
 
+    public AudioSource fireSound;
+
     private Transform target = null;
 
 
@@ -85,6 +87,8 @@ public class TowerController : MonoBehaviour
         bullet.setSlowDuration(slowDuration);
         bullet.setSlowMultiplier(slowMultiplier);
         bullet.SetExplosionRadius(splashArea);
+
+        fireSound.Play();
 
         if (bullet != null){
             bullet.Chase(target);

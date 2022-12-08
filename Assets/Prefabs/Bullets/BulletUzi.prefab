@@ -141,3 +141,4 @@ MonoBehaviour:
   defaultAdd: 20
   costOfAmmo: 40
   nameOfWeapon: Uzi
+  weaponAudio: {fileID: 0}

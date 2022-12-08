@@ -141,3 +141,4 @@ MonoBehaviour:
   defaultAdd: 30
   costOfAmmo: 70
   nameOfWeapon: M4
+  weaponAudio: {fileID: 0}

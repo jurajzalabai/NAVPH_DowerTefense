@@ -141,3 +141,4 @@ MonoBehaviour:
   defaultAdd: 5
   costOfAmmo: 100
   nameOfWeapon: AWP
+  weaponAudio: {fileID: 0}

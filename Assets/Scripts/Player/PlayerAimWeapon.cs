@@ -39,6 +39,8 @@ public class PlayerAimWeapon : MonoBehaviour
         if (Input.GetMouseButton(0) && aimAnimator.GetCurrentAnimatorStateInfo(0).IsName("weapon_idle") && PlayerController.builderMode == false)
         {
             aimAnimator.SetTrigger("Shoot");
+            
+
             GameObject _bullet = Instantiate(bullet, barell.transform.position, Quaternion.identity);
         }
     }

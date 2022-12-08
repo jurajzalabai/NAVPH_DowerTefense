@@ -141,3 +141,4 @@ MonoBehaviour:
   defaultAdd: 8
   costOfAmmo: 50
   nameOfWeapon: Sawed
+  weaponAudio: {fileID: 0}

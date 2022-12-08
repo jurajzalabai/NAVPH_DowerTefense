@@ -122,6 +122,7 @@ public class PlayerWeaponController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && !isReloading)
         {
             isReloading = true;
+            currWeapon.GetComponent<WeaponController>().reloadAudio.Play();
             StartCoroutine(Reload());
 
         }
@@ -199,7 +200,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         if (Input.GetMouseButton(0) && canFire && !isMouseOver && currWeaponMagazineCount > 0 && !isReloading && !IsPointerOverUIElement() && PlayerController.builderMode == false)
         {
-
+            currWeapon.GetComponent<WeaponController>().weaponAudio.Play();
             isShooting = true;
             canFire = false;
             currWeaponMagazineCount -= 1;
@@ -214,6 +215,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         if (currWeaponMagazineCount <= 0 && currWeaponCountAmmo > 0 && !isReloading)
         {
+            currWeapon.GetComponent<WeaponController>().reloadAudio.Play();
             isReloading = true;
             StartCoroutine(Reload());
         }

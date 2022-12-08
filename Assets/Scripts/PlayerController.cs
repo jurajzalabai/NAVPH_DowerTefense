@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
                 HUDUI.SetActive(true);
                 TowerHUDUI.SetActive(false);
             }
-            Debug.Log("Builder mode active: " + builderMode);
+            //Debug.Log("Builder mode active: " + builderMode);
         }
 
         HandleTowerInventory();

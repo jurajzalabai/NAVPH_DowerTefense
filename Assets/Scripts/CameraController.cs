@@ -42,8 +42,8 @@ public class CameraController : MonoBehaviour
         else
         {
             tabPress = true;
-            Camera.main.GetComponent<Camera>().orthographicSize = 8;
-            transform.position = new Vector3(0, 0, -12);
+            Camera.main.GetComponent<Camera>().orthographicSize = 11;
+            transform.position = new Vector3(0, 0, -14);
         }
     }
 

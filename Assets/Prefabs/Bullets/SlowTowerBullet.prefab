@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  explosionEffect: {fileID: 0}
+  explosionEffect: {fileID: 6653690490140054537, guid: 6fc93dae3b6ff444f969b5ac0cbdbd8d, type: 3}
 --- !u!50 &7313705429491760057
 Rigidbody2D:
   serializedVersion: 4

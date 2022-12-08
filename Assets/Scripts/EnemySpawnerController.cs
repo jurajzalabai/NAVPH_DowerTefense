@@ -21,6 +21,11 @@ public class EnemySpawnerController : MonoBehaviour
 
     public static float difficulty = 0.6f;
 
+    public void SetDifficulty(float value)
+    {
+        difficulty = value;
+    }
+
     //public float countEnemyTypeOne;
     //public float countEnemyTypeTwo;
     //public float countEnemyTypeThree;
@@ -28,6 +33,7 @@ public class EnemySpawnerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetDifficulty(PlayerPrefs.GetFloat("difficulty"));
         // A[] array2 = array1.Select (a =>(A)a.Clone()).ToArray();
         lastCountWave = waves[waves.Length - 1].countEnemies;
         SpawnWaves();
@@ -37,7 +43,7 @@ public class EnemySpawnerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void SpawnWaves()

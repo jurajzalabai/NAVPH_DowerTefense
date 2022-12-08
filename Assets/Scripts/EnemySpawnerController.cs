@@ -73,7 +73,7 @@ public class EnemySpawnerController : MonoBehaviour
                 i = Random.Range(0, enemies.Length);
                 if (countEnemy[i] > 0)
                 {
-                    GameObject spawnedEnemy = Instantiate(enemies[i], spawnPoints[Random.Range(0, 4)].transform.position, Quaternion.identity);
+                    GameObject spawnedEnemy = Instantiate(enemies[i], spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position, Quaternion.identity);
                     spawnedEnemy.transform.parent = enemiesOnMap.transform;
                     countEnemy[i] -= 1;
                     count -= 1;

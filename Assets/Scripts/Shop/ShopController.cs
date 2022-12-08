@@ -6,6 +6,7 @@ public class ShopController : MonoBehaviour
 {
 
     public GameObject shopMenu;
+    public GameObject indicator;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class ShopController : MonoBehaviour
         if (collider.tag == "Player")
         {
             OpenShop();
+            indicator.SetActive(false);
         }
     }
 

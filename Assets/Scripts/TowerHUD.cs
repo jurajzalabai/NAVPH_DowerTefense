@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TowerHUD : MonoBehaviour
 {
     private static int towerCount = 0;
     public GameObject player;
     public Color activeColor;
+    private Color oldTextColor;
     private Color oldColor;
     private int activeSlot = -1;
 
@@ -79,13 +81,19 @@ public class TowerHUD : MonoBehaviour
     }
 
     public void setActiveSlot(int index) {
-        if(activeSlot > -1 && oldColor != null){
-             this.transform.GetChild(0).transform.GetChild(activeSlot).transform.GetComponent<Image>().color = oldColor;
+        if(activeSlot > -1 && oldColor != null && oldTextColor != null)
+        {
+            this.transform.GetChild(0).transform.GetChild(activeSlot).transform.GetComponent<Image>().color = oldColor;
+            this.transform.GetChild(0).transform.GetChild(activeSlot).transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>().color = oldTextColor;
+
         }
 
-        if(index > -1){
+        if (index > -1){
             Image img = this.transform.GetChild(0).transform.GetChild(index).GetComponent<Image>();
+            TextMeshProUGUI text = this.transform.GetChild(0).transform.GetChild(index).transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>();
+            oldTextColor = text.color;
             oldColor = img.color;
+            text.color = activeColor;
             img.color = activeColor;
         }
         activeSlot = index;

@@ -433,7 +433,7 @@ MonoBehaviour:
   damage: 50
   hitRate: 0.5
   killedMoney: 50
-  bloodEffect: {fileID: 4420433148471242012, guid: 6f61bde40d7b53648b15bd06b0b6ade5, type: 3}
+  bloodEffect: {fileID: 7535335726636788042, guid: 08f1361f2fe99fa41a5b68b9d3543d82, type: 3}
 --- !u!1 &7883457984698255840
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HUDController : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class HUDController : MonoBehaviour
 
     public Color activeColor;
     private Color oldColor;
+    private Color oldTextColor;
     private int activeSlot = -1;
 
     private void Awake()
     {
+        setActiveSlot(0);
         int poz = player.transform.Find("Aim").transform.childCount;
         weaponCount = player.transform.Find("Aim").transform.childCount - 1;
         for (int i = 0; i < poz; i++)
@@ -67,15 +70,19 @@ public class HUDController : MonoBehaviour
 
     public void setActiveSlot(int index)
     {
-        if (activeSlot > -1 && oldColor != null)
+        if (activeSlot > -1 && oldColor != null && oldTextColor != null)
         {
             this.transform.GetChild(0).transform.GetChild(activeSlot).transform.GetComponent<Image>().color = oldColor;
+            this.transform.GetChild(0).transform.GetChild(activeSlot).transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>().color = oldTextColor;
         }
 
         if (index > -1)
         {
             Image img = this.transform.GetChild(0).transform.GetChild(index).GetComponent<Image>();
+            TextMeshProUGUI text = this.transform.GetChild(0).transform.GetChild(index).transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>();
+            oldTextColor = text.color;
             oldColor = img.color;
+            text.color = activeColor;
             img.color = activeColor;
         }
         activeSlot = index;

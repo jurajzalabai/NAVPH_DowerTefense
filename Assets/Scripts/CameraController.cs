@@ -5,8 +5,11 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public static bool tabPress;
-
+    public GameObject camera;
     public GameObject player;
+    public PlayerWeaponController pwc;
+    public bool isShaking = false;
+    private float magnitude;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +37,7 @@ public class CameraController : MonoBehaviour
     {
         if (tabPress == false && player != null)
         {
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 8.0f);
+                transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 8.0f);
         }
         else
         {
@@ -42,5 +45,29 @@ public class CameraController : MonoBehaviour
             Camera.main.GetComponent<Camera>().orthographicSize = 8;
             transform.position = new Vector3(0, 0, -12);
         }
+    }
+
+
+    IEnumerator Shake(float duration, float magnitude)
+    {
+        isShaking = true;
+        Vector3 originalPosition = camera.transform.localPosition;
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+
+            camera.transform.localPosition = new Vector3(player.transform.position.x + x, player.transform.position.y + y, originalPosition.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+
+        }
+        isShaking = false;
+        camera.transform.localPosition = originalPosition;
     }
 }

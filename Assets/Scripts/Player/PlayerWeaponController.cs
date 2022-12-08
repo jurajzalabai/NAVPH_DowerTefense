@@ -33,6 +33,8 @@ public class PlayerWeaponController : MonoBehaviour
 
     private int index = 0;
 
+    public bool isShooting = false; 
+
 
     private float refillAmmo = 0;
     private bool isMouseOver = false;
@@ -82,6 +84,7 @@ public class PlayerWeaponController : MonoBehaviour
             }
         }
     }
+
 
     public void GetWeapon()
     {
@@ -196,12 +199,17 @@ public class PlayerWeaponController : MonoBehaviour
 
         if (Input.GetMouseButton(0) && canFire && !isMouseOver && currWeaponMagazineCount > 0 && !isReloading && !IsPointerOverUIElement() && PlayerController.builderMode == false)
         {
+
+            isShooting = true;
             canFire = false;
             currWeaponMagazineCount -= 1;
             currWeapon.GetComponent<WeaponController>().magazineCount -= 1;
             magazineUI.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = currWeaponMagazineCount.ToString() + "/" + currWeaponCountAmmo.ToString();
             currWeaponAnimator.SetTrigger("Shoot");
             GameObject _bullet = Instantiate(currWeaponBullet, currWeaponBarrel.transform.position, Quaternion.identity);
+            
+
+
         }
 
         if (currWeaponMagazineCount <= 0 && currWeaponCountAmmo > 0 && !isReloading)

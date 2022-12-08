@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     public static bool builderMode = false;
 
-    public static float money = 200;
+    public static float money = 1000;
 
     // Start is called before the first frame update
     void Start()

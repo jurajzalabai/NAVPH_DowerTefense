@@ -18,6 +18,11 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void PlayTutorial()
+    {
+        SceneManager.LoadScene(4);
+    }
+
     public void SetDifficulty(float value)
     {
         PlayerPrefs.SetFloat("difficulty", value);

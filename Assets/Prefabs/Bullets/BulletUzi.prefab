@@ -137,8 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 8
-  bulletDamage: 25
+  bulletDamage: 20
   defaultAdd: 20
   costOfAmmo: 40
   nameOfWeapon: Uzi
-  weaponAudio: {fileID: 0}

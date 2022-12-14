@@ -23,9 +23,9 @@ public class PlayerController : MonoBehaviour
 
     public static bool builderMode = false;
 
-    public static float money = 1000;
+    public static float money = 100;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame updatea
     void Start()
     {
         Vector3 locScale = healthUI.transform.Find("Health").gameObject.transform.localScale;

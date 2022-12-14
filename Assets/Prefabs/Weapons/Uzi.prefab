@@ -183,10 +183,10 @@ MonoBehaviour:
   weaponBarrel: {fileID: 2563665377701145408}
   weaponBullet: {fileID: 7183658429463076908, guid: db76c8e64c842d44187539cd6d0abe0e, type: 3}
   weaponImage: {fileID: 21300000, guid: 0e5fae19d66527d4faec86a487a5be29, type: 3}
-  fireRate: 0.1
+  fireRate: 0.15
   magazineSize: 20
   magazineCount: 20
-  cost: 250
+  cost: 400
   reloadTime: 1
   countAmmo: 120
   costAmmo: 40

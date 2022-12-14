@@ -137,8 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 30
-  bulletDamage: 150
+  bulletDamage: 200
   defaultAdd: 5
   costOfAmmo: 100
   nameOfWeapon: AWP
-  weaponAudio: {fileID: 0}

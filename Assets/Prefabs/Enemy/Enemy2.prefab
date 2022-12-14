@@ -433,9 +433,8 @@ MonoBehaviour:
   health: 80
   damage: 20
   hitRate: 0.4
-  killedMoney: 20
+  killedMoney: 25
   bloodEffect: {fileID: 7535335726636788042, guid: 85eb75b58ef772d428387c7885df9895, type: 3}
-  deathSound: {fileID: 9006103191945488605}
 --- !u!82 &9006103191945488605
 AudioSource:
   m_ObjectHideFlags: 0

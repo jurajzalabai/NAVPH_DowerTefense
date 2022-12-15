@@ -135,10 +135,10 @@ MonoBehaviour:
   damage: 20
   fireRate: 0.2
   cost: 750
-  splashArea: 2.5
-  slowDuration: 1
+  splashArea: 1.5
+  slowDuration: 0
   turnSpeed: 400
-  slowMultiplier: 0.5
+  slowMultiplier: 0
   splashDamage: 0
   fireCountdown: 0
   fireSound: {fileID: -2732201115088223282}
@@ -168,9 +168,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 30
+  MaxDistance: 6
   Pan2D: 0
-  rolloffMode: 2
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

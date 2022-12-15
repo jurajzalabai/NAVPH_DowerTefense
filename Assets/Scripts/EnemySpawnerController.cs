@@ -64,15 +64,8 @@ public class EnemySpawnerController : MonoBehaviour
     {
         waveStartSound.Play();
         timeToNextWaveUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (waveCounter + 1).ToString() + "/" + waves.Length;
-        if (waves.Length - 1 != waveCounter)
-        {
-            waveCounter += 1;
-   
-        }
-        else
-        {
-            countEnemy = lastCountWave;
-        }
+        
+        waveCounter += 1;
         //Debug.Log(lastCountWave);
         int i = 0;
         float count = 0;
@@ -91,7 +84,14 @@ public class EnemySpawnerController : MonoBehaviour
                     spawnedEnemy.transform.parent = enemiesOnMap.transform;
                     countEnemy[i] -= 1;
                     count -= 1;
-                    yield return new WaitForSeconds(Random.Range(spawnTimeBottom, spawnTimeTop));
+                    if (waveCounter >= 6)
+                    {
+                        yield return new WaitForSeconds(Random.Range(0, 0.5f));
+                    }
+                    else
+                    {
+                        yield return new WaitForSeconds(Random.Range(spawnTimeBottom, spawnTimeTop));
+                    }
                 }
             }
             while (enemiesOnMap.transform.childCount > 0)
@@ -101,9 +101,16 @@ public class EnemySpawnerController : MonoBehaviour
 
             for (float timeLeft = timer; timeLeft > 0; timeLeft -= Time.deltaTime)
             {
-                if (waves.Length == waveCounter + 1)
+                if (waves.Length < waveCounter + 1)
                 {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    if (SceneManager.GetActiveScene().buildIndex == 4)
+                    {
+                        SceneManager.LoadScene(0);
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    }
                 }
                 timeToNextWaveUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ((int)timeLeft).ToString();
                 yield return null;

@@ -23,7 +23,6 @@ public class ShopController : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
-            OpenShop();
             if(indicator != null) {
                 indicator.SetActive(false);
             }

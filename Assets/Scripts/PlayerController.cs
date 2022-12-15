@@ -21,11 +21,18 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource damagedSound;
 
+    public Texture2D cursorBuild;
+
     public static bool builderMode = false;
 
-    public static float money = 100;
+    public static float money = 10000;
 
     // Start is called before the first frame updatea
+
+    void Awake()
+    {
+        money = 10000;
+    }
     void Start()
     {
         Vector3 locScale = healthUI.transform.Find("Health").gameObject.transform.localScale;
@@ -45,11 +52,13 @@ public class PlayerController : MonoBehaviour
                 if (transform.Find("Towers").transform.childCount >= 1){
                     SetTower(0);
                 }
+                Cursor.SetCursor(cursorBuild, Vector2.zero, CursorMode.Auto);
                 HUDUI.SetActive(false);
                 TowerHUDUI.SetActive(true);
             }
             else
             {
+                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
                 HUDUI.SetActive(true);
                 TowerHUDUI.SetActive(false);
             }

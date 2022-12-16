@@ -334,7 +334,7 @@ MonoBehaviour:
   radius: 0.5
   height: 2
   canMove: 1
-  maxSpeed: 3
+  maxSpeed: 2.8
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -429,8 +429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3defcfc2ff75111408734fc9c8cabd39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: 120
-  health: 120
+  fullHealth: 150
+  health: 150
   damage: 50
   hitRate: 0.5
   killedMoney: 70

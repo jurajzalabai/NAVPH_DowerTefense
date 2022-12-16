@@ -166,6 +166,10 @@ public class PlayerWeaponController : MonoBehaviour
             {
                 SetGun(6);
             }
+            else if (Input.GetKeyDown(KeyCode.Alpha8))
+            {
+                SetGun(7);
+            }
         }
         else
         {

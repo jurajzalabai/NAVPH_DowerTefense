@@ -25,15 +25,15 @@ public class UnlimitedSpawnerController : MonoBehaviour
 
     public Wave wave;
 
-    private float countEnemyOne = 5;
-    private float countEnemyTwo = 3;
+    private float countEnemyOne = 2;
+    private float countEnemyTwo = 2;
     private float countEnemyThree = 1;
     private float countEnemyFour = 1;
     private float countEnemyFive = 1;
 
     public void SetDifficulty(float value)
     {
-        difficulty = 1;
+        difficulty = value;
     }
 
     //public float countEnemyTypeOne;
@@ -43,7 +43,7 @@ public class UnlimitedSpawnerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetDifficulty(1);
+        SetDifficulty(PlayerPrefs.GetFloat("difficulty"));
         SpawnWaves();
         //SpawnWave(spawning);
     }
@@ -69,6 +69,7 @@ public class UnlimitedSpawnerController : MonoBehaviour
         waveStartSound.Play();
         timeToNextWaveUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (waveCounter + 1).ToString();
         //Debug.Log(lastCountWave);
+        waveCounter += 1;
         int i = 0;
         float count = 0;
         foreach (var item in wave.countEnemies)
@@ -88,7 +89,7 @@ public class UnlimitedSpawnerController : MonoBehaviour
                     spawnedEnemy.transform.parent = enemiesOnMap.transform;
                     wave.countEnemies[i] -= 1;
                     count -= 1;
-                    yield return new WaitForSeconds(Random.Range(spawnTimeBottom, spawnTimeTop));
+                    yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
                 }
             }
             while (enemiesOnMap.transform.childCount > 0)
@@ -101,18 +102,22 @@ public class UnlimitedSpawnerController : MonoBehaviour
                 timeToNextWaveUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ((int)timeLeft).ToString();
                 yield return null;
             }
-            wave.countEnemies[0] = Mathf.Round(countEnemyOne * 1.5f);
-            wave.countEnemies[1] = Mathf.Round(countEnemyTwo * 1.4f);
-            wave.countEnemies[2] = Mathf.Round(countEnemyThree * 1.3f);
-            wave.countEnemies[3] = Mathf.Round(countEnemyFour * 1.2f);
-            wave.countEnemies[4] = Mathf.Round(countEnemyFive * 1.1f);
-            countEnemyOne = countEnemyOne * 1.5f;
-            countEnemyTwo = countEnemyTwo * 1.4f;
-            countEnemyThree = countEnemyThree * 1.3f;
+            wave.countEnemies[0] = Mathf.Round((countEnemyOne * 1.3f) + waveCounter);
+            wave.countEnemies[1] = Mathf.Round((countEnemyOne * 1.3f) + waveCounter);
+            wave.countEnemies[2] = Mathf.Round((countEnemyOne * 1.2f) + waveCounter);
+            wave.countEnemies[3] = Mathf.Round((countEnemyOne * 1.2f));
+            wave.countEnemies[4] = Mathf.Round((countEnemyOne * 1.2f));
+            Debug.Log("1: " + Mathf.Round((countEnemyOne * 1.3f) + waveCounter));
+            Debug.Log("2: " + Mathf.Round((countEnemyOne * 1.3f) + waveCounter));
+            Debug.Log("3: " + Mathf.Round((countEnemyOne * 1.2f) + waveCounter));
+            Debug.Log("4: " + Mathf.Round((countEnemyOne * 1.2f)));
+            Debug.Log("5: " + Mathf.Round((countEnemyOne * 1.2f)));
+            countEnemyOne = (countEnemyOne * 1.3f);
+            countEnemyTwo = countEnemyTwo * 1.3f;
+            countEnemyThree = countEnemyThree * 1.2f;
             countEnemyFour = countEnemyFour * 1.2f;
-            countEnemyFive = countEnemyFive * 1.1f;
-            Debug.Log(Mathf.Round(countEnemyOne * 1.5f));
-            Debug.Log(Mathf.Round(countEnemyFour * 1.2f));
+            countEnemyFive = countEnemyFive * 1.2f;
+  
             SpawnWaves();
 
         }

@@ -27,4 +27,9 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("difficulty", value);
     }
+
+    public void SetType(int value)
+    {
+        PlayerPrefs.SetInt("type", value);
+    }
 }

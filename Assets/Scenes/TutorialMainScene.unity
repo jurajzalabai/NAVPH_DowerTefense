@@ -21382,11 +21382,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8fa23f13793224e9da549ecc3fb49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magazineUI: {fileID: 0}
-  HUDUI: {fileID: 0}
-  TowerHUDUI: {fileID: 0}
-  player: {fileID: 0}
-  _base: {fileID: 0}
+  magazineUI: {fileID: 2133388784}
+  HUDUI: {fileID: 2060635410}
+  TowerHUDUI: {fileID: 1049291971}
+  player: {fileID: 772561735}
+  _base: {fileID: 1811008100}
   buySound: {fileID: 641060810}
 --- !u!82 &641060810
 AudioSource:
@@ -47090,6 +47090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1395972465}
   - component: {fileID: 1395972464}
+  - component: {fileID: 1395972466}
   m_Layer: 0
   m_Name: TutorialManager
   m_TagString: Untagged
@@ -47135,6 +47136,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1395972466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395972463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4b0e7822e4e4c1ca7a53bbcc9c0bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerHUD: {fileID: 1049291971}
 --- !u!1 &1400833329
 GameObject:
   m_ObjectHideFlags: 0
@@ -47953,6 +47967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopMenu: {fileID: 641060807}
   indicator: {fileID: 0}
+  shopButton: {fileID: 0}
 --- !u!1 &1418950638
 GameObject:
   m_ObjectHideFlags: 0
@@ -58106,6 +58121,7 @@ GameObject:
   - component: {fileID: 1726089517}
   - component: {fileID: 1726089516}
   - component: {fileID: 1726089515}
+  - component: {fileID: 1726089518}
   m_Layer: 0
   m_Name: ShopRange
   m_TagString: Untagged
@@ -58127,6 +58143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopMenu: {fileID: 641060807}
   indicator: {fileID: 0}
+  shopButton: {fileID: 1839227053}
 --- !u!58 &1726089516
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -58134,7 +58151,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726089514}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -58160,6 +58177,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1726089518
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726089514}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.5, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4, y: 3}
+  m_EdgeRadius: 0
 --- !u!1 &1728154995
 GameObject:
   m_ObjectHideFlags: 0
@@ -62399,7 +62442,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1839227055}
   m_OnClick:
     m_PersistentCalls:

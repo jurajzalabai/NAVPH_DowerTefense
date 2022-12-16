@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     public static bool builderMode = false;
 
+    public static bool isInShopArea = false;
+
     public static float money = 10000;
 
     // Start is called before the first frame updatea

@@ -12,6 +12,7 @@ public class TurretBuildManager : MonoBehaviour
 
     public GameObject towerHUD;
 
+    // create static object on awake (singleton)
     private void Awake() {
         if (instance != null){
             return;
@@ -20,29 +21,21 @@ public class TurretBuildManager : MonoBehaviour
         instance = this;    
     }
 
+    // getter method for private turretToBuild variable
     public GameObject GetTurretToBuild(){
         return turretToBuild;
     }
 
+    // getter method for private inventoryIndex variable
     public int getInventoryIndex(){
         return inventoryIndex;
     }
 
+    // set selected turret and remember turret index in inventory so we can later remove it by index
     public void SetTurretToBuild(GameObject turret, int index) {
+        // set slot with selected index as active (change border color)
         towerHUD.GetComponent<TowerHUD>().setActiveSlot(index);
         turretToBuild = turret;
         inventoryIndex = index;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // turretToBuild = turretPrefab;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -17,6 +17,7 @@ public class BulletController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // ignore bullet collisions with player
         player = GameObject.FindGameObjectWithTag("Player");
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
     }
@@ -37,11 +38,12 @@ public class BulletController : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Untagged")
         {
+            // destroy bullet after collision with non enemy objects
             if (collision.gameObject.tag != "Enemy")
             {
-            Destroy(this.gameObject);
-
+                Destroy(this.gameObject);
             }
+            // bullet hit enemy, deal damage to enemy and then destroy bullet object
             else if (collision.gameObject.tag == "Enemy")
             {
                 collision.gameObject.GetComponent<EnemyController>().Damaged(bulletDamage);

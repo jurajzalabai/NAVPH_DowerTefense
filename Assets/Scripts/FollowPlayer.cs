@@ -12,7 +12,6 @@ namespace Pathfinding
         private bool followingPlayer = false;
         public LayerMask collisionLayer;
 
-        // Start is called before the first frame update
         void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player");
@@ -21,7 +20,6 @@ namespace Pathfinding
             aIDestination.target = basee.transform;
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (player != null)
@@ -36,11 +34,9 @@ namespace Pathfinding
                 {
                     if (hit.collider != null)
                     {
-                        //Debug.Log("Hit: " + hit.collider.gameObject.name);
 
                         if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
                         {
-                            //Debug.Log("Chasing player");
                             aIDestination.target = player.transform;
                             followingPlayer = true;
                         }
@@ -48,7 +44,6 @@ namespace Pathfinding
                         {
                             if (followingPlayer)     // And previously we did chase
                             {
-                                //Debug.Log("Stop chase");
                                 followingPlayer = false;
                                 aIDestination.target = basee.transform;
                             }

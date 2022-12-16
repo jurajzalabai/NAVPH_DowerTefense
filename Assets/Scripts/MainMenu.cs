@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(4);
     }
 
+    // set game dificulty, value represents float number which is used as multiplication factor for enemy health
     public void SetDifficulty(float value)
     {
         PlayerPrefs.SetFloat("difficulty", value);

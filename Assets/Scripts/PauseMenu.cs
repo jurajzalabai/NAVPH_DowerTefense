@@ -9,7 +9,6 @@ using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     public static bool gamePaused = false;
     public GameObject pauseMenu;
@@ -17,25 +16,29 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject typeOfGameManager;
     public GameObject typeOfGameUnlimitedManager;
+
     public void Resume()
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
     }
-
+    // pause game
     public void Pause()
     {
+        // display pause canvas and set time scaling to 0
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
     }
 
+    // retry scene with given sceneNumber
     public void Retry(int sceneNumber)
     {
         SceneManager.LoadScene(sceneNumber);
     }
 
+    // return to main menu
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(0);
@@ -73,9 +76,9 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // if Escape key is pressed, pause or resume game according to current gamePause state
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!gamePaused)

@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// TooltipTrigger, which can be added to shop buttons to show info about weapon or tower statistics
 public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
     public string header;
+
+    // TowerController containing tower statistics to be shown
     public TowerController tower;
 
+    // WeaponController containing weapon statistics to be shown
     public WeaponController weapon;
 
     public void OnPointerEnter(PointerEventData eventData){
+        // if tower controller was set, set tooltip text according to tower statistics
         if(tower != null){
             TooltipSystem.SetText(header, new string[]{
                 "cost",
@@ -33,6 +38,7 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             TooltipSystem.SetImage(tower.towerImage);
             TooltipSystem.Show();
         }
+        // if weapon was set, set tooltip text according to weapon statistics
         else if(weapon != null){
             TooltipSystem.SetText(header, new string[]{
                 "cost",

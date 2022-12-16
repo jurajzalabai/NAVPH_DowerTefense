@@ -106,17 +106,17 @@ public class UnlimitedSpawnerController : MonoBehaviour
             wave.countEnemies[1] = Mathf.Round((countEnemyOne * 1.3f) + waveCounter);
             wave.countEnemies[2] = Mathf.Round((countEnemyOne * 1.2f) + waveCounter);
             wave.countEnemies[3] = Mathf.Round((countEnemyOne * 1.2f));
-            wave.countEnemies[4] = Mathf.Round((countEnemyOne * 1.2f));
+            wave.countEnemies[4] = Mathf.Round((countEnemyOne * 1.1f));
             Debug.Log("1: " + Mathf.Round((countEnemyOne * 1.3f) + waveCounter));
             Debug.Log("2: " + Mathf.Round((countEnemyOne * 1.3f) + waveCounter));
             Debug.Log("3: " + Mathf.Round((countEnemyOne * 1.2f) + waveCounter));
             Debug.Log("4: " + Mathf.Round((countEnemyOne * 1.2f)));
-            Debug.Log("5: " + Mathf.Round((countEnemyOne * 1.2f)));
+            Debug.Log("5: " + Mathf.Round((countEnemyOne * 1.1f)));
             countEnemyOne = (countEnemyOne * 1.3f);
             countEnemyTwo = countEnemyTwo * 1.3f;
             countEnemyThree = countEnemyThree * 1.2f;
             countEnemyFour = countEnemyFour * 1.2f;
-            countEnemyFive = countEnemyFive * 1.2f;
+            countEnemyFive = countEnemyFive * 1.1f;
   
             SpawnWaves();
 

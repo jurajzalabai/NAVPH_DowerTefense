@@ -31,33 +31,16 @@ public class EnemySpawnerController : MonoBehaviour
         difficulty = value;
     }
 
-    //public float countEnemyTypeOne;
-    //public float countEnemyTypeTwo;
-    //public float countEnemyTypeThree;
-    //public float countEnemyTypeFour;
-    // Start is called before the first frame update
     void Start()
     {
         SetDifficulty(PlayerPrefs.GetFloat("difficulty"));
-        // A[] array2 = array1.Select (a =>(A)a.Clone()).ToArray();
         lastCountWave = waves[waves.Length - 1].countEnemies;
         SpawnWaves();
-        //SpawnWave(spawning);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void SpawnWaves()
     {
-        
         StartCoroutine(SpawnWave(waves[waveCounter].countEnemies, waves[waveCounter].enemies));
-        
-        
-        
     }
 
     IEnumerator SpawnWave(float[] countEnemy, GameObject[] enemies)
@@ -66,7 +49,6 @@ public class EnemySpawnerController : MonoBehaviour
         timeToNextWaveUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (waveCounter + 1).ToString() + "/" + waves.Length;
         
         waveCounter += 1;
-        //Debug.Log(lastCountWave);
         int i = 0;
         float count = 0;
         foreach (var item in countEnemy)
@@ -77,9 +59,12 @@ public class EnemySpawnerController : MonoBehaviour
         {
             while(count > 0)
             {
+                // randomly choose enemy to spawn
                 i = Random.Range(0, enemies.Length);
+                // check if we can spawn enemy of this type in current wave
                 if (countEnemy[i] > 0)
                 {
+                    // randomly select spawn point from available spawn points where enemy should be spawned
                     GameObject spawnedEnemy = Instantiate(enemies[i], spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position, Quaternion.identity);
                     spawnedEnemy.transform.parent = enemiesOnMap.transform;
                     countEnemy[i] -= 1;

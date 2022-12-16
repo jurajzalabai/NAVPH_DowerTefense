@@ -23,22 +23,9 @@ public class WeaponController : MonoBehaviour
     [Header("Position offset")]
     public float x;
     public float y;
-    //public float bulletDamage;
 
     public AudioSource weaponAudio;
 
     public AudioSource reloadAudio;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
 }

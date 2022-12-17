@@ -17,6 +17,7 @@ public class DoorController : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
+            // if player collides with door open them
             leftDoor.OpenDoor();
             rightDoor.OpenDoor();
             StartCoroutine(WaitAnimationOverAndDoThings());
@@ -27,6 +28,7 @@ public class DoorController : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
+            // close door when player exits trigger
             leftDoor.CloseDoor();
             rightDoor.CloseDoor();
             this.transform.GetChild(2).gameObject.SetActive(true);

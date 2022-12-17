@@ -9,26 +9,17 @@ public class ShopController : MonoBehaviour
     public GameObject shopMenu;
     public GameObject indicator;
     public GameObject shopButton;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
-    }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player")
         {
+            // player is in shop range, he can press shop button to buy
             PlayerController.isInShopArea = true;
             if(shopButton != null){
                 shopButton.GetComponent<Button>().interactable = true;
             }
+            // deactivate indicator in tutorial scene after user enters shop
             if(indicator != null) {
                 indicator.SetActive(false);
             }
@@ -39,6 +30,7 @@ public class ShopController : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
+            // player is not in shop area, deactivate button
             if(shopButton != null){
                 shopButton.GetComponent<Button>().interactable = false;
             }
@@ -56,6 +48,7 @@ public class ShopController : MonoBehaviour
 
     public void CloseShop()
     {
+        // close shop and hide tooltip system
         shopMenu.SetActive(false);
         TooltipSystem.Hide();
     }

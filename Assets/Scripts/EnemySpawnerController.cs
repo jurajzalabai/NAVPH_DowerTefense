@@ -53,6 +53,7 @@ public class EnemySpawnerController : MonoBehaviour
         float count = 0;
         foreach (var item in countEnemy)
         {
+            // count total number of enemies
             count += item;
         }
         if (enemies.Length == countEnemy.Length)
@@ -69,6 +70,7 @@ public class EnemySpawnerController : MonoBehaviour
                     spawnedEnemy.transform.parent = enemiesOnMap.transform;
                     countEnemy[i] -= 1;
                     count -= 1;
+                    // if wave counter is bigger or equal than 6, spawn time is reduced to make it harder
                     if (waveCounter >= 6)
                     {
                         yield return new WaitForSeconds(Random.Range(0, 0.5f));
@@ -79,13 +81,15 @@ public class EnemySpawnerController : MonoBehaviour
                     }
                 }
             }
+            // while there are enemies present on map, don't continue
             while (enemiesOnMap.transform.childCount > 0)
             {
-                yield return null;    
+                yield return null;
             }
 
             for (float timeLeft = timer; timeLeft > 0; timeLeft -= Time.deltaTime)
             {
+                // when all waves are done, switch to another scences
                 if (waves.Length < waveCounter + 1)
                 {
                     if (SceneManager.GetActiveScene().buildIndex == 4)
@@ -97,6 +101,7 @@ public class EnemySpawnerController : MonoBehaviour
                         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                     }
                 }
+                // update time to next wave ui text element
                 timeToNextWaveUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ((int)timeLeft).ToString();
                 yield return null;
             }
@@ -105,6 +110,7 @@ public class EnemySpawnerController : MonoBehaviour
         }
         else
         {
+            // for developer purposes
             Debug.Log("Zly pocet vo waves");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

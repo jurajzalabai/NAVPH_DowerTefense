@@ -25,15 +25,10 @@ public class TutorialSceneController : MonoBehaviour
 
 
     [Space(10)]
+    // indicator (arrow) showing direction to player in tutorial scene
     public GameObject indicator;
     public GameObject indicatorText;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (!GameManager.activeSelf)
@@ -53,7 +48,7 @@ public class TutorialSceneController : MonoBehaviour
       
     }
     
-
+    // call this function when base part of tutorial was completed
     public void GotItBase()
     {
         baseCanvas.SetActive(false);
@@ -62,6 +57,8 @@ public class TutorialSceneController : MonoBehaviour
         indicatorText.GetComponent<TextMeshProUGUI>().text = "secret path";
     }
 
+
+    // call this function when secret paths part of tutorial was completed
     public void GotItSecret()
     {
         secretCanvas.SetActive(false);
@@ -70,12 +67,16 @@ public class TutorialSceneController : MonoBehaviour
         indicatorText.GetComponent<TextMeshProUGUI>().text = "shop";
     }
 
+
+    // call this function when shop part of tutorial was completed
     public void GotItShop()
     {
         shopCanvas.SetActive(false);
         movesCanvas.SetActive(true);
     }
 
+
+    // call this function when possible moves part of tutorial was completed
     public void GotItMoves()
     {
         indicator.SetActive(true);
@@ -87,6 +88,8 @@ public class TutorialSceneController : MonoBehaviour
 
     }
 
+
+    // call this function when build part of tutorial was completed
     public void GotItBuild()
     {
         indicator.SetActive(false);

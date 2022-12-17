@@ -13165,12 +13165,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8fa23f13793224e9da549ecc3fb49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magazineUI: {fileID: 0}
-  HUDUI: {fileID: 0}
-  TowerHUDUI: {fileID: 0}
-  player: {fileID: 0}
-  _base: {fileID: 0}
+  magazineUI: {fileID: 2133388784}
+  HUDUI: {fileID: 2060635410}
+  TowerHUDUI: {fileID: 1049291971}
+  player: {fileID: 772561735}
+  _base: {fileID: 1811008100}
   buySound: {fileID: 368881025}
+  PLAYER_HEALTH_COST: 100
+  BASE_HEALTH_COST: 100
 --- !u!82 &368881025
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19617,7 +19619,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000$
+  m_text: 1500$
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b352b8a0dd6702d459faedafd90bd2d8, type: 2}
   m_sharedMaterial: {fileID: -9038134583198630468, guid: b352b8a0dd6702d459faedafd90bd2d8, type: 2}
@@ -27103,7 +27105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333dc529d836a44099bf7e60dc6f7a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  header: AWP
+  header: minigun
   tower: {fileID: 0}
   weapon: {fileID: 3233607474363500065, guid: 3d0f7e71ac6b97e4c835c07ba0be9ea5, type: 3}
 --- !u!114 &790842141

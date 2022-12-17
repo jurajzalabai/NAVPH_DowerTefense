@@ -25,8 +25,16 @@ public class EnemyController : MonoBehaviour
     {
         if (EnemySpawnerController.difficulty != 0)
         {
-            fullHealth = fullHealth * EnemySpawnerController.difficulty;
-            health = health * EnemySpawnerController.difficulty;
+            if (PlayerPrefs.GetInt("type") == 0)
+            {
+                fullHealth = fullHealth * EnemySpawnerController.difficulty;
+                health = health * EnemySpawnerController.difficulty;
+            }
+            else
+            {
+                fullHealth = fullHealth * UnlimitedSpawnerController.difficulty;
+                health = health * UnlimitedSpawnerController.difficulty;
+            }
         }
         // set UI healthbar for enemy when he is spawned
         Vector3 locScale = this.transform.Find("UI").transform.Find("EnemyHealthUI").transform.Find("Health").gameObject.transform.localScale;

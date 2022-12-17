@@ -30,6 +30,7 @@ public class UnlimitedSpawnerController : MonoBehaviour
     private float countEnemyThree = 1;
     private float countEnemyFour = 1;
     private float countEnemyFive = 1;
+    private float countEnemySix = 2;
 
     public void SetDifficulty(float value)
     {
@@ -102,22 +103,38 @@ public class UnlimitedSpawnerController : MonoBehaviour
                 timeToNextWaveUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ((int)timeLeft).ToString();
                 yield return null;
             }
-            wave.countEnemies[0] = Mathf.Round((countEnemyOne * 1.3f) + waveCounter);
-            wave.countEnemies[1] = Mathf.Round((countEnemyOne * 1.3f) + waveCounter);
-            wave.countEnemies[2] = Mathf.Round((countEnemyOne * 1.2f) + waveCounter);
-            wave.countEnemies[3] = Mathf.Round((countEnemyOne * 1.2f));
-            wave.countEnemies[4] = Mathf.Round((countEnemyOne * 1.1f));
-            Debug.Log("1: " + Mathf.Round((countEnemyOne * 1.3f) + waveCounter));
-            Debug.Log("2: " + Mathf.Round((countEnemyOne * 1.3f) + waveCounter));
-            Debug.Log("3: " + Mathf.Round((countEnemyOne * 1.2f) + waveCounter));
-            Debug.Log("4: " + Mathf.Round((countEnemyOne * 1.2f)));
-            Debug.Log("5: " + Mathf.Round((countEnemyOne * 1.1f)));
-            countEnemyOne = (countEnemyOne * 1.3f);
-            countEnemyTwo = countEnemyTwo * 1.3f;
+            wave.countEnemies[0] = Mathf.Round((countEnemyOne * 1.2f) + waveCounter);
+            wave.countEnemies[1] = Mathf.Round((countEnemyTwo * 1.2f) + waveCounter);
+            wave.countEnemies[2] = Mathf.Round((countEnemyThree * 1.1f));
+            wave.countEnemies[3] = Mathf.Round((countEnemyFour * 1.1f));
+            wave.countEnemies[4] = Mathf.Round((countEnemyFive * 1.1f));
+            if (waveCounter >= 7)
+            {
+                wave.countEnemies[5] = Mathf.Round((countEnemySix * 1.2f));
+            }
+            Debug.Log("1: " + Mathf.Round((countEnemyOne * 1.2f) + waveCounter));
+            Debug.Log("2: " + Mathf.Round((countEnemyTwo * 1.2f) + waveCounter));
+            Debug.Log("3: " + Mathf.Round((countEnemyThree * 1.1f)));
+            Debug.Log("4: " + Mathf.Round((countEnemyFour * 1.1f)));
+            Debug.Log("5: " + Mathf.Round((countEnemyFive * 1.1f)));
+            if (waveCounter >= 7)
+            {
+                Debug.Log("5: " + Mathf.Round((countEnemySix * 1.2f)));
+            }
+            countEnemyOne = (countEnemyOne * 1.2f);
+            countEnemyTwo = countEnemyTwo * 1.2f;
             countEnemyThree = countEnemyThree * 1.2f;
-            countEnemyFour = countEnemyFour * 1.2f;
+            countEnemyFour = countEnemyFour * 1.1f;
             countEnemyFive = countEnemyFive * 1.1f;
-  
+            if (waveCounter >= 7)
+            {
+                countEnemySix = countEnemySix * 1.2f;
+            }
+
+            if (waveCounter + 1 % 10 == 0)
+            {
+                difficulty = difficulty + 0.3f;
+            }
             SpawnWaves();
 
         }

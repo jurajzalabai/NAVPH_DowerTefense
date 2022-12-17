@@ -134,8 +134,8 @@ MonoBehaviour:
   range: 5
   damage: 5
   fireRate: 0.2
-  cost: 600
-  splashArea: 2.5
+  cost: 400
+  splashArea: 2
   slowDuration: 3
   turnSpeed: 400
   slowMultiplier: 0.3

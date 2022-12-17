@@ -155,9 +155,9 @@ MonoBehaviour:
   fireRate: 0.18
   magazineSize: 30
   magazineCount: 30
-  cost: 700
+  cost: 750
   reloadTime: 1.5
-  countAmmo: 200
+  countAmmo: 100
   costAmmo: 60
   x: 2.18838
   y: -0.1735483

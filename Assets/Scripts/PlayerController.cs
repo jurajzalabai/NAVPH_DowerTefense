@@ -27,11 +27,11 @@ public class PlayerController : MonoBehaviour
 
     public static bool isInShopArea = false;
 
-    public static float money = 10000;
+    public static float money = 150;
 
     void Awake()
     {
-        money = 10000;
+        money = 150;
     }
     void Start()
     {

@@ -157,8 +157,8 @@ MonoBehaviour:
   magazineCount: 5
   cost: 800
   reloadTime: 3
-  countAmmo: 20
-  costAmmo: 120
+  countAmmo: 25
+  costAmmo: 100
   x: 2.113
   y: -0.19
   weaponAudio: {fileID: 3782314647248911844}

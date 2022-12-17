@@ -429,11 +429,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3defcfc2ff75111408734fc9c8cabd39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: 240
-  health: 240
+  fullHealth: 280
+  health: 280
   damage: 50
   hitRate: 0.5
-  killedMoney: 60
+  killedMoney: 70
   bloodEffect: {fileID: 7535335726636788042, guid: 08f1361f2fe99fa41a5b68b9d3543d82, type: 3}
 --- !u!82 &3973404580130636858
 AudioSource:

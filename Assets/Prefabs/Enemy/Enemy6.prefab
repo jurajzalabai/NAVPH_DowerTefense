@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3219918839655879401
+--- !u!1 &3514082601718673479
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8412978903598712162}
+  - component: {fileID: 14724798716670647}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -16,13 +16,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8412978903598712162
+--- !u!4 &14724798716670647
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3219918839655879401}
+  m_GameObject: {fileID: 3514082601718673479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -65,7 +65,7 @@ RectTransform:
   m_Children:
   - {fileID: 7883457985312436402}
   - {fileID: 7883457984277376188}
-  m_Father: {fileID: 8412978903598712162}
+  m_Father: {fileID: 14724798716670647}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -189,9 +189,9 @@ GameObject:
   - component: {fileID: 7883457983592824830}
   - component: {fileID: 7883457983592824829}
   - component: {fileID: 7883457984641218646}
-  - component: {fileID: 9006103191945488605}
+  - component: {fileID: -3410134703343072705}
   m_Layer: 0
-  m_Name: Enemy2
+  m_Name: Enemy6
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,7 +209,7 @@ Transform:
   m_LocalScale: {x: 0.42487895, y: 0.42487895, z: 0.42487895}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8412978903598712162}
+  - {fileID: 14724798716670647}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -255,7 +255,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 51bae32ec1b22bf4597d4b37f2122e23, type: 3}
-  m_Color: {r: 0.12965775, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.9118242, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -429,13 +429,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3defcfc2ff75111408734fc9c8cabd39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: 80
-  health: 80
-  damage: 20
-  hitRate: 0.4
-  killedMoney: 50
-  bloodEffect: {fileID: 7535335726636788042, guid: 85eb75b58ef772d428387c7885df9895, type: 3}
---- !u!82 &9006103191945488605
+  fullHealth: 700
+  health: 700
+  damage: 50
+  hitRate: 0.5
+  killedMoney: 80
+  bloodEffect: {fileID: 7535335726636788042, guid: 6f6dc49efa8f58c458d98c54bbc497ab, type: 3}
+--- !u!82 &-3410134703343072705
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

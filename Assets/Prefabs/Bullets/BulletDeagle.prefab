@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9557977312985498098fb78eaf4468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 8
-  bulletDamage: 50
+  force: 15
+  bulletDamage: 40
   defaultAdd: 7
-  costOfAmmo: 30
+  costOfAmmo: 25
   nameOfWeapon: Deagle

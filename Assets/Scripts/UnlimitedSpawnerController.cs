@@ -131,8 +131,9 @@ public class UnlimitedSpawnerController : MonoBehaviour
                 countEnemySix = countEnemySix * 1.2f;
             }
 
-            if (waveCounter + 1 % 10 == 0)
+            if ((waveCounter + 1) % 10 == 0)
             {
+
                 difficulty = difficulty + 0.3f;
             }
             SpawnWaves();

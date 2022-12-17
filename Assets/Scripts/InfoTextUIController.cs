@@ -12,7 +12,7 @@ public class InfoTextUIController : MonoBehaviour
         textUI = this.transform.GetChild(0).gameObject;
     }
 
-    // Update is called once per frame
+    // temporary text used for warnings, set temporary visibility
     void Update()
     {
         if (textUI.GetComponent<TextMeshProUGUI>().alpha > 0)

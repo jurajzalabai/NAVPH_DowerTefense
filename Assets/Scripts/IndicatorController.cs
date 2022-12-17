@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// indicator in tutorial to show player what to do
 public class IndicatorController : MonoBehaviour
 {
 

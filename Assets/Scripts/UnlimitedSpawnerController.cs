@@ -37,44 +37,31 @@ public class UnlimitedSpawnerController : MonoBehaviour
         difficulty = value;
     }
 
-    //public float countEnemyTypeOne;
-    //public float countEnemyTypeTwo;
-    //public float countEnemyTypeThree;
-    //public float countEnemyTypeFour;
-    // Start is called before the first frame update
     void Start()
     {
+        // set waves difficulty (affecting hp of enemies)
         SetDifficulty(PlayerPrefs.GetFloat("difficulty"));
         SpawnWaves();
-        //SpawnWave(spawning);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void SpawnWaves()
     {
-
         StartCoroutine(SpawnWave());
-
-
-
     }
 
+    // unlimited wave spawner
     IEnumerator SpawnWave()
     {
         Wave point = new Wave();
         waveStartSound.Play();
         timeToNextWaveUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (waveCounter + 1).ToString();
-        //Debug.Log(lastCountWave);
+
         waveCounter += 1;
         int i = 0;
         float count = 0;
         foreach (var item in wave.countEnemies)
         {
+            // count total number of enemies
             count += item;
         }
         if (wave.enemies.Length == wave.countEnemies.Length)
@@ -86,6 +73,7 @@ public class UnlimitedSpawnerController : MonoBehaviour
                 i = Random.Range(0, wave.enemies.Length);
                 if (wave.countEnemies[i] > 0)
                 {
+                    // spawn enemy on random spawn point
                     GameObject spawnedEnemy = Instantiate(wave.enemies[i], spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position, Quaternion.identity);
                     spawnedEnemy.transform.parent = enemiesOnMap.transform;
                     wave.countEnemies[i] -= 1;
@@ -93,6 +81,7 @@ public class UnlimitedSpawnerController : MonoBehaviour
                     yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
                 }
             }
+            // wait until there are no more enemies on map
             while (enemiesOnMap.transform.childCount > 0)
             {
                 yield return null;
@@ -100,9 +89,11 @@ public class UnlimitedSpawnerController : MonoBehaviour
 
             for (float timeLeft = timer; timeLeft > 0; timeLeft -= Time.deltaTime)
             {
+                // update time to next wave ui text element
                 timeToNextWaveUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ((int)timeLeft).ToString();
                 yield return null;
             }
+            // generate random enemies count based on current wave number
             wave.countEnemies[0] = Mathf.Round((countEnemyOne * 1.2f) + waveCounter);
             wave.countEnemies[1] = Mathf.Round((countEnemyTwo * 1.2f) + waveCounter);
             wave.countEnemies[2] = Mathf.Round((countEnemyThree * 1.1f));
@@ -130,7 +121,6 @@ public class UnlimitedSpawnerController : MonoBehaviour
             {
                 countEnemySix = countEnemySix * 1.2f;
             }
-
             if ((waveCounter + 1) % 10 == 0)
             {
 
@@ -141,6 +131,7 @@ public class UnlimitedSpawnerController : MonoBehaviour
         }
         else
         {
+            // developer purposes only
             Debug.Log("Zly pocet vo waves");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

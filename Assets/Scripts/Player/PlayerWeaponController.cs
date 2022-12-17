@@ -9,7 +9,6 @@ public class PlayerWeaponController : MonoBehaviour
 {
     //code from https://www.youtube.com/watch?v=fuGQFdhSPg4&list=RDCMUCFK6NCbuCIVzA6Yj1G_ZqCg&start_radio=1&t=68s&ab_channel=CodeMonkey
 
-
     private Transform aimTransform;
  
     public Animator pointAnimator;
@@ -35,15 +34,10 @@ public class PlayerWeaponController : MonoBehaviour
 
     public bool isShooting = false; 
 
-
     private float refillAmmo = 0;
     private bool isMouseOver = false;
     private bool isReloading = false;
 
-
-    //public GameObject barell;
-    //public GameObject bullet;
-    // Start is called before the first frame update
     private void Start()
     {
         
@@ -88,7 +82,6 @@ public class PlayerWeaponController : MonoBehaviour
 
     public void GetWeapon()
     {
-        //Debug.Log(currWeapon.GetComponent<WeaponController>().countAmmo)
         currWeapon = transform.Find("Aim").transform.GetChild(index);
         currWeaponAnimator = currWeapon.GetComponent<WeaponController>().weaponAnimator;
         currWeaponBarrel = currWeapon.GetComponent<WeaponController>().weaponBarrel;
@@ -113,12 +106,6 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void HandleReloading()
     {
-       /* if (Input.GetKeyDown(KeyCode.R))
-        {
-            StartCoroutine(Reload());
-
-        }*/
-
         if (Input.GetKeyDown(KeyCode.R) && !isReloading)
         {
             isReloading = true;
@@ -126,11 +113,6 @@ public class PlayerWeaponController : MonoBehaviour
             StartCoroutine(Reload());
 
         }
-
-        //if (isReloading && currWeaponCountAmmo > 0)
-        //{
-        //    StartCoroutine(Reload());
-        //}
     }
 
     private void HandleInventory()
@@ -192,18 +174,23 @@ public class PlayerWeaponController : MonoBehaviour
     
     private void HandleShooting()
     {
+        // if weappon is reloading
         if (!canFire)
         {
+            // check if time elapsed is bigger than weapon firerate
             timer += Time.deltaTime;
             if (timer > currWeaponFireRate)
             {
+                // weapon can fire again
                 canFire = true;
                 timer = 0;
             }
         }
 
+        // when player clicks mouse button check if he can shoot - he can't reload, can't be in build mode and can't have empty magazine
         if (Input.GetMouseButton(0) && canFire && !isMouseOver && currWeaponMagazineCount > 0 && !isReloading && !IsPointerOverUIElement() && PlayerController.builderMode == false)
         {
+            // set shooting state, substract ammo from magazine, and spawn bullet
             currWeapon.GetComponent<WeaponController>().weaponAudio.Play();
             isShooting = true;
             canFire = false;
@@ -212,54 +199,52 @@ public class PlayerWeaponController : MonoBehaviour
             magazineUI.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = currWeaponMagazineCount.ToString() + "/" + currWeaponCountAmmo.ToString();
             currWeaponAnimator.SetTrigger("Shoot");
             GameObject _bullet = Instantiate(currWeaponBullet, currWeaponBarrel.transform.position, Quaternion.identity);
-            
-
-
         }
 
+        // automatic reloading if magazine count is 0 and player has available ammo
         if (currWeaponMagazineCount <= 0 && currWeaponCountAmmo > 0 && !isReloading)
         {
             currWeapon.GetComponent<WeaponController>().reloadAudio.Play();
             isReloading = true;
             StartCoroutine(Reload());
         }
-   
-        
     }
 
     IEnumerator Reload()
     {
+        // set reloading indicator
         while (!(timerReload > currWeaponReloadTime))
         {
             timerReload += Time.deltaTime;
             reloadUI.transform.GetChild(0).GetComponent<Image>().fillAmount = 1 - (timerReload / currWeaponReloadTime);
             yield return null;
         }
-        //timerReload += Time.deltaTime;
-        //reloadUI.transform.GetChild(0).transform.localScale = new Vector3(timerReload, 1, 1);
+        // reloading time ended, relaod weapon
         if (timerReload > currWeaponReloadTime)
         {
             if (currWeaponCountAmmo > currWeapon.GetComponent<WeaponController>().magazineSize)
             {
+                // add ammo up to magazine size
                 refillAmmo = currWeapon.GetComponent<WeaponController>().magazineSize - currWeaponMagazineCount;
             }
             else
             {
+                // player has less ammo left than magazine size
                 refillAmmo = currWeapon.GetComponent<WeaponController>().magazineSize - currWeaponMagazineCount;
                 if (refillAmmo > currWeaponCountAmmo)
                 {
                     refillAmmo = currWeaponCountAmmo;
                 } 
             }
+            // reloading is completed
             canFire = true;
             timerReload = 0;
             reloadUI.transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
+            // update magazine state
             if (currWeaponCountAmmo > currWeapon.GetComponent<WeaponController>().magazineSize)
             {
                 currWeaponMagazineCount += refillAmmo;
                 currWeapon.GetComponent<WeaponController>().magazineCount += refillAmmo;
-                //currWeaponMagazineCount = currWeapon.GetComponent<WeaponController>().magazineSize;
-                //currWeapon.GetComponent<WeaponController>().magazineCount = currWeapon.GetComponent<WeaponController>().magazineSize;
                 currWeaponCountAmmo -= refillAmmo;
                 currWeapon.GetComponent<WeaponController>().countAmmo -= refillAmmo;
 
@@ -271,17 +256,17 @@ public class PlayerWeaponController : MonoBehaviour
                 currWeaponCountAmmo -= refillAmmo;
                 currWeapon.GetComponent<WeaponController>().countAmmo -= refillAmmo;
             }
+            // update magazine size UI text components
             magazineUI.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = currWeaponMagazineCount.ToString() + "/" + currWeaponCountAmmo.ToString();
             isReloading = false;
-            //yield return null;
         }
     }
 
     private void HandleAiming()
     {
-
         Vector3 mousePosition = GetMouseWorldPosition();
 
+        // rotate weapon based on aim point
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         //Debug.Log(angle + 180);
@@ -308,13 +293,14 @@ public class PlayerWeaponController : MonoBehaviour
         isMouseOver = false;
     }
 
-
+    //code from https://www.youtube.com/watch?v=fuGQFdhSPg4&list=RDCMUCFK6NCbuCIVzA6Yj1G_ZqCg&start_radio=1&t=68s&ab_channel=CodeMonkey
     public static Vector3 GetMouseWolrdPositionWithZ(Vector3 screenPosition, Camera worldCamera)
     {
         Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
         return worldPosition;
     }
 
+    //code from https://www.youtube.com/watch?v=fuGQFdhSPg4&list=RDCMUCFK6NCbuCIVzA6Yj1G_ZqCg&start_radio=1&t=68s&ab_channel=CodeMonkey
     public static Vector3 GetMouseWorldPosition()
     {
         Vector3 vec = GetMouseWolrdPositionWithZ(Input.mousePosition, Camera.main);
@@ -322,11 +308,13 @@ public class PlayerWeaponController : MonoBehaviour
         return vec;
     }
 
+    //code from https://www.youtube.com/watch?v=fuGQFdhSPg4&list=RDCMUCFK6NCbuCIVzA6Yj1G_ZqCg&start_radio=1&t=68s&ab_channel=CodeMonkey
     public static Vector3 GetMouseWorldPositionWithZ()
     {
         return GetMouseWolrdPositionWithZ(Input.mousePosition, Camera.main);
     }
 
+    //code from https://www.youtube.com/watch?v=fuGQFdhSPg4&list=RDCMUCFK6NCbuCIVzA6Yj1G_ZqCg&start_radio=1&t=68s&ab_channel=CodeMonkey
     public static Vector3 GetMouseWorldPositionWithZ(Camera worldCamera)
     {
         return GetMouseWolrdPositionWithZ(Input.mousePosition, worldCamera);

@@ -10,17 +10,13 @@ public class CameraController : MonoBehaviour
     public PlayerWeaponController pwc;
     public bool isShaking = false;
     private float magnitude;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.Tab))
         {
+            // set camera to tab mode
             tabPress = true;
             Camera.main.GetComponent<Camera>().orthographicSize = 8;
             transform.position = new Vector3(0, 0, -12);
@@ -28,6 +24,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
+            // set camera to normal mode
             Camera.main.GetComponent<Camera>().orthographicSize = 3;
             tabPress = false;
         }
@@ -35,6 +32,7 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
+        // move camera after player moved
         if (tabPress == false && player != null)
         {
                 transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 8.0f);
@@ -48,6 +46,7 @@ public class CameraController : MonoBehaviour
     }
 
 
+    // this function was not used in the end (maybe in the future)
     IEnumerator Shake(float duration, float magnitude)
     {
         isShaking = true;
